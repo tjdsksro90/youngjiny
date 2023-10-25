@@ -1,5 +1,6 @@
 "use strict";
 import { handleSearch } from "./search.js";
+import { handleFilter } from "./filter.js";
 
 const body = document.querySelector("body");
 const header = document.querySelector("header");
@@ -11,7 +12,6 @@ const filterBtn = document.querySelector(".button-filter");
 const moreBtn = document.querySelector(".button-more-item");
 let page = 1;
 let filter;
-let genres = [];
 let value;
 let totalPages;
 let prevFiltered;
@@ -27,15 +27,10 @@ const options = {
   }
 };
 const fetchMovieData = async (page = 1) => {
-  const { results } = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`, options)
+  const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`, options)
     .then((response) => response.json())
     .catch((err) => console.error(err));
-  return results;
-};
-
-const generateMovieCards = async () => {
-  movieList = await fetchMovieData();
-  makeMovieCards(movieList);
+  return data;
 };
 
 const getGenre = async () => {
@@ -46,10 +41,12 @@ const getGenre = async () => {
 };
 
 // 영화 정보의 배열을 순회하며 영화 카드를 만드는 함수
-const makeMovieCards = async () => {
-  const movies = await fetchMovieData();
+const makeMovieCards = async (pageNum) => {
+  const data = await fetchMovieData(pageNum);
   const cardList = document.querySelector(".card-list");
-  cardList.innerHTML = movies
+  const { results, page } = data; // results === 영화 리스트, page === 페이지
+  cardList.setAttribute("data-page", page);
+  cardList.innerHTML += results
     .map((movie) => {
       // 영화 객체의 제목, 이미지경로, 내용, 평점 property를 구조 분해 및 할당을 이용해 저장한다
       const { title, poster_path, overview, vote_average, id, genre_ids } = movie;
@@ -98,79 +95,27 @@ const makeGenre = (genres) => {
   genreContainer.addEventListener("click", onGenreItemClicked);
 
   function onGenreItemClicked(e) {
-    const genre = e.target.getAttribute("data-genre");
     if (e.target === genreContainer) return;
-    if (e.target.matches(".label-checkbox")) {
+    if (e.target.matches(".checkbox")) {
       e.target.classList.toggle("checked");
     }
-    const genresSelected = document.querySelectorAll(".checked");
-    genresSelected.length ? filterMovies(filter, "", genres) : showAllCards();
+
+    const itemsChecked = document.querySelectorAll(".checked");
+    console.log(itemsChecked);
+    let genres = [];
+    itemsChecked.forEach((item) => genres.push(item.getAttribute("data-genre")));
+    // console.log(genres);
+    genres.length ? handleFilter(genres) : showAllCards();
   }
 };
 // TODAY starts here
-// TODO 리팩토링 끝내기
-
-// Event Handler callback functions
-
-// 카드 클릭시 ID 를 보여주기 위한 이벤트 핸들러
 
 // 더 보기 버튼을 누르면 다음 top rated 영화 페이지를 로드한다
-const onMoreBtnClicked = (e) => {
-  getMovie(++page);
-};
-
-// 검색 버튼 이벤트 핸들러
-const onSearchClicked = (e) => {
-  e.preventDefault();
-  const input = document.getElementById("input");
-  value = input.value;
-  filterMovies(filter, value);
-  input.value = "";
-};
-
-const onResetBtnClicked = (e) => {
-  // e.target.classList.add("invisible");
-  filter = "";
-  resetBtn.innerText = "검색 결과 초기화";
-  removeGenres();
-  closeGenreBox();
-  // genres = [];
-  showAllCards();
-};
-
-const onDarkmodeBtnClicked = (e) => {
-  document.querySelector("body").classList.toggle("dark-mode");
-  header.classList.toggle("dark-mode");
-  footer.classList.toggle("dark-mode");
-  document.querySelector("#sidebar-right").classList.toggle("dark-mode");
-  document.querySelector("#sidebar-left").classList.toggle("dark-mode");
-  // filterBtn.classList.toggle("dark-mode");
-  document.querySelectorAll("main .button").forEach((btn) => {
-    btn.classList.toggle("dark-mode-buttons");
-  });
-  document.querySelector("fieldset").classList.toggle("dark-mode-buttons");
-  document.querySelectorAll("ul label").forEach((btn) => {
-    btn.classList.toggle("dark-mode-buttons");
-  });
-  document.Array.from(querySelectorAll(".movie-card")).forEach((card) => card.classList.toggle("dark-mode"));
-  document.Array.from(querySelectorAll("p")).forEach((p) => p.classList.toggle("dark-mode"));
-  // e.target.closest("div").classList.toggle("dark-mode-buttons");
-};
-
-const onFilterBtnClicked = (e) => {
-  document.querySelector("fieldset").classList.toggle("hidden");
-};
 
 function showAllCards() {
   let cards = document.querySelectorAll(".movie-card");
   cards.forEach((card) => card.classList.remove("hidden"));
 }
-
-const removeGenres = () => {
-  const genreItems = document.querySelectorAll("ul input:checked");
-  // console.log(genreItems);
-  genreItems.forEach((genreItem) => genreItem.click());
-};
 
 const closeGenreBox = () => {
   document.querySelector("fieldset").classList.add("hidden");
@@ -216,35 +161,74 @@ const filterByTitle = (cards, value) => {
   }
 };
 
-const filterByGenre = (cards, genres) => {
-  let cardsToDel = [];
-  let cardsToShow = cards.filter((card) => {
-    let genresFromMovieCard = card.getAttribute("data-genres").split(",");
-    if (genresFromMovieCard.filter((genre) => genres.includes(genre)).length) {
-      return card;
-    } else cardsToDel.push(card);
-    // action, drama => action,
-  });
-  let stringifiedFilterResult = cardsToShow.map((card) => {
-    return card.getAttribute("data-id");
-  });
+// const filterByGenre = (cards, genres) => {
+//   let cardsToDel = [];
+//   let cardsToShow = cards.filter((card) => {
+//     let genresFromMovieCard = card.getAttribute("data-genres").split(",");
+//     if (genresFromMovieCard.filter((genre) => genres.includes(genre)).length) {
+//       return card;
+//     } else cardsToDel.push(card);
+//     // action, drama => action,
+//   });
+//   let stringifiedFilterResult = cardsToShow.map((card) => {
+//     return card.getAttribute("data-id");
+//   });
 
-  if (String(prevFiltered) === String(stringifiedFilterResult)) {
-    getMovie(++page);
-  } else {
-    prevFiltered = stringifiedFilterResult;
-    cardsToDel.forEach((card) => {
-      card.classList.toggle("hidden");
-    });
-    resetBtn.innerText = `${genres.length}가지 장르에 대한 ${cardsToShow.length}개의 검색 결과 초기화`;
-  }
-};
+//   if (String(prevFiltered) === String(stringifiedFilterResult)) {
+//     getMovie(++page);
+//   } else {
+//     prevFiltered = stringifiedFilterResult;
+//     cardsToDel.forEach((card) => {
+//       card.classList.toggle("hidden");
+//     });
+//     resetBtn.innerText = `${genres.length}가지 장르에 대한 ${cardsToShow.length}개의 검색 결과 초기화`;
+//   }
+// };
+
+function onDarkmodeBtnClicked(e) {
+  document.querySelector("body").classList.toggle("dark-mode");
+  header.classList.toggle("dark-mode");
+  footer.classList.toggle("dark-mode");
+  document.querySelector("#sidebar-right").classList.toggle("dark-mode");
+  document.querySelector("#sidebar-left").classList.toggle("dark-mode");
+  // filterBtn.classList.toggle("dark-mode");
+  document.querySelectorAll("main .button").forEach((btn) => {
+    btn.classList.toggle("dark-mode-buttons");
+  });
+  document.querySelector("fieldset").classList.toggle("dark-mode-buttons");
+  document.querySelectorAll("ul label").forEach((btn) => {
+    btn.classList.toggle("dark-mode-buttons");
+  });
+  document.Array.from(querySelectorAll(".movie-card")).forEach((card) => card.classList.toggle("dark-mode"));
+  document.Array.from(querySelectorAll("p")).forEach((p) => p.classList.toggle("dark-mode"));
+  // e.target.closest("div").classList.toggle("dark-mode-buttons");
+}
+
+function onResetBtnClicked(e) {
+  // e.target.classList.add("invisible");
+  filter = "";
+  const cards = document.querySelectorAll(".movie-card");
+  const resetBtn = document.querySelector(".button-reset");
+  const genreChecked = document.querySelectorAll(".checked");
+  const filterBtn = document.querySelector(".button-filter");
+
+  genreChecked.forEach((genreItem) => genreItem.click());
+  filterBtn.click();
+  resetBtn.innerHTML = "검색 결과 초기화";
+
+  closeGenreBox();
+}
 
 // submitBtn.addEventListener("click", onSearchClicked);
 resetBtn.addEventListener("click", onResetBtnClicked);
 darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
-moreBtn.addEventListener("click", onMoreBtnClicked);
-filterBtn.addEventListener("click", onFilterBtnClicked);
+moreBtn.addEventListener("click", (e) => {
+  let curPage = document.querySelector(".card-list").getAttribute("data-page");
+  makeMovieCards(++curPage);
+});
+filterBtn.addEventListener("click", (e) => {
+  document.querySelector("fieldset").classList.toggle("hidden");
+});
 
 makeMovieCards();
 getGenre();
