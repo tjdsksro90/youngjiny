@@ -1,0 +1,19 @@
+{
+  "name": "youngjiny",
+  "version": "1.0.0",
+  "description": "first team project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjdsksro90/youngjiny.git"
+  },
+  "author": "윤호준, 김주희, 이동탁, 박길훈, 송용승",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tjdsksro90/youngjiny/issues"
+  },
+  "homepage": "https://github.com/tjdsksro90/youngjiny#readme"
+}
