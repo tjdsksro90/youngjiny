@@ -225,6 +225,7 @@ const filterByTitle = (cards, value) => {
     return;
   } else if (String(prevFiltered) === String(stringifiedFilterResult)) {
     getMovie(++page);
+    console.log("hey");
   } else {
     prevFiltered = stringifiedFilterResult;
     cardsToDel.forEach((card) =>
