@@ -56,7 +56,7 @@ const makeMovieCards = async () => {
       const { title, poster_path, overview, vote_average, id, genre_ids } =
         movie;
       return `<article data-id=${id} data-genres="${genre_ids}" class="movie-card">
-        <img src="http://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
+        <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
         <div class="movie-card-content">
           <h3 class="movie-title">${title}</h3>
           <p class="movie-overview">${overview}</p>
@@ -66,6 +66,16 @@ const makeMovieCards = async () => {
       </article>`;
     })
     .join("");
+
+  for (const child of cardList.children) {
+    child.addEventListener("click", onCardClicked);
+  }
+  // 카드 클릭시 ID 를 보여주기 위한 이벤트 핸들러
+  function onCardClicked(e) {
+    // event의 currentTarget 프로퍼티를 사용해 자식 요소가 아닌 부모의 "data-id"를 받아올 수 있게 했다
+    const id = e.currentTarget.getAttribute("data-id");
+    alert(`영화 ID: ${id}`);
+  }
   // 마지막 페이지까지 로드되면 더보기 버튼 비활성화
   if (page === totalPages) moreBtn.classList.toggle("invisible");
 
@@ -76,16 +86,16 @@ const makeMovieCards = async () => {
 // 장르를 list element로 만들어 필터리스트에 넣는 함수
 const makeGenre = (genres) => {
   const genreContainer = document.querySelector(".genre-container");
-  genres.forEach((genre) => {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `
+  genreContainer.innerHTML = genres
+    .map((genre) => {
+      return `
     <li class="genre-item">
       <input id="${genre.name}" class="checkbox" type="checkbox" data-genre="${genre.id}" value="${genre.name}"/>
       <label for="${genre.name}" class="label-checkbox">${genre.name}</label>
     </li>
     `;
-    genreContainer.appendChild(listItem);
-  });
+    })
+    .join("");
 
   genreContainer.addEventListener("click", onGenreItemClicked);
 
@@ -100,23 +110,15 @@ const makeGenre = (genres) => {
       e.target.classList.toggle("checked");
     }
     const genresSelected = document.querySelectorAll(".checked");
-    if (genresSelected.length) {
-      filterMovies(filter, "", genres);
-    } else {
-      resetBtn.innerText = "검색 결과 초기화";
-      showAllCards();
-    }
+    genresSelected.length ? filterMovies(filter, "", genres) : showAllCards();
   }
 };
+// TODAY starts here
+// TODO 리팩토링 끝내기
 
 // Event Handler callback functions
 
 // 카드 클릭시 ID 를 보여주기 위한 이벤트 핸들러
-const onCardClicked = (e) => {
-  // event의 currentTarget 프로퍼티를 사용해 자식 요소가 아닌 부모의 "data-id"를 받아올 수 있게 했다
-  const id = e.currentTarget.getAttribute("data-id");
-  alert(`영화 ID: ${id}`);
-};
 
 // 더 보기 버튼을 누르면 다음 top rated 영화 페이지를 로드한다
 const onMoreBtnClicked = (e) => {
