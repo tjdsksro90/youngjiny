@@ -12,24 +12,17 @@
       <header class="nav">
         <div class="nav-container">
           <div>
-            <a class="logo" href="."
-              ><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px"
-            /></a>
+            <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
           </div>
           <div class="container">
             <div>
               <button class="button button-darkmode" href="#">
-                <img
-                  class="icon-darkmode"
-                  src="./src/darkmode.svg"
-                  alt="darkmode"
-                  width="32px"
-                />
+                <img class="icon-darkmode" src="./src/darkmode.svg" alt="darkmode" width="32px" />
               </button>
             </div>
-            <form onsubmit="" class="nav-search">
-              <label for="title">영화 검색 </label>
-              <input id="input" name="title" type="text" autofocus />
+            <form id="nav-search">
+              <label>영화 검색 </label>
+              <input id="search-input" name="title" type="text" autofocus />
               <button class="button button-search" type="submit">
                 <img src="./src/search.svg" alt="search" width="32px" />
               </button>
@@ -62,6 +55,6 @@
       </footer>
     </div>
 
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js" type="module"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 "use strict";
-import { onSearchBtnClicked } from "./search";
+import { handleSearch } from "./search.js";
 
 const body = document.querySelector("body");
 const header = document.querySelector("header");
@@ -240,7 +240,7 @@ const filterByGenre = (cards, genres) => {
   }
 };
 
-submitBtn.addEventListener("click", onSearchClicked);
+// submitBtn.addEventListener("click", onSearchClicked);
 resetBtn.addEventListener("click", onResetBtnClicked);
 darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
 moreBtn.addEventListener("click", onMoreBtnClicked);
@@ -248,3 +248,11 @@ filterBtn.addEventListener("click", onFilterBtnClicked);
 
 makeMovieCards();
 getGenre();
+
+const searchInput = document.querySelector("#search-input");
+const form = document.querySelector("#nav-search");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(e.target);
+  handleSearch(searchInput.value);
+});

@@ -1,8 +1,7 @@
 @import "reset.css";
 @font-face {
   font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -122,7 +121,7 @@ footer.dark-mode {
   flex-direction: row;
   margin-right: 12px;
 }
-.nav-search {
+#nav-search {
   position: relative;
 }
 .button {
