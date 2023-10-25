@@ -67,7 +67,6 @@ const makeMovieCards = async (pageNum) => {
   }
   // 카드 클릭시 ID 를 보여주기 위한 이벤트 핸들러
   function onCardClicked(e) {
-    // event의 currentTarget 프로퍼티를 사용해 자식 요소가 아닌 부모의 "data-id"를 받아올 수 있게 했다
     const id = e.currentTarget.getAttribute("data-id");
     alert(`영화 ID: ${id}`);
   }
@@ -117,74 +116,6 @@ function showAllCards() {
   cards.forEach((card) => card.classList.remove("hidden"));
 }
 
-const closeGenreBox = () => {
-  document.querySelector("fieldset").classList.add("hidden");
-};
-
-// 미구현 사항 : 청불 영화/연도별 영화 필터를 넣을 계획
-const filterMovies = (filter, value = "", genres = []) => {
-  showAllCards(); // 카드리스트 표시 초기화
-  resetBtn.innerText = "검색 결과 초기화"; // 검색결과 텍스트 초기화
-  if (filter === "title") {
-    let cards = Array.from(document.querySelectorAll(".movie-title"));
-    filterByTitle(cards, value);
-  } else if (filter === "genre") {
-    let cards = Array.from(document.querySelectorAll("article"));
-    filterByGenre(cards, genres);
-  }
-};
-
-const filterByTitle = (cards, value) => {
-  let cardsToDel = [];
-  let cardsToShow = cards.filter((card) => {
-    let title = card.innerHTML;
-    let valueToLowerCase = value.toLowerCase();
-    if (title.toLowerCase().includes(valueToLowerCase)) {
-      // card.closest(".movie-card").classList.add("hidden");
-      return card;
-    } else cardsToDel.push(card);
-  });
-  let stringifiedFilterResult = cardsToShow.map((card) => {
-    return card.closest("article").getAttribute("data-id");
-  });
-
-  if (value === "") {
-    alert("검색어를 입력해 주십시오.");
-    return;
-  } else if (String(prevFiltered) === String(stringifiedFilterResult)) {
-    getMovie(++page);
-    console.log("hey");
-  } else {
-    prevFiltered = stringifiedFilterResult;
-    cardsToDel.forEach((card) => card.closest(".movie-card").classList.toggle("hidden"));
-    resetBtn.innerText = `'${value}' 에 대한 ${cardsToShow.length}개의 검색 결과 초기화`;
-  }
-};
-
-// const filterByGenre = (cards, genres) => {
-//   let cardsToDel = [];
-//   let cardsToShow = cards.filter((card) => {
-//     let genresFromMovieCard = card.getAttribute("data-genres").split(",");
-//     if (genresFromMovieCard.filter((genre) => genres.includes(genre)).length) {
-//       return card;
-//     } else cardsToDel.push(card);
-//     // action, drama => action,
-//   });
-//   let stringifiedFilterResult = cardsToShow.map((card) => {
-//     return card.getAttribute("data-id");
-//   });
-
-//   if (String(prevFiltered) === String(stringifiedFilterResult)) {
-//     getMovie(++page);
-//   } else {
-//     prevFiltered = stringifiedFilterResult;
-//     cardsToDel.forEach((card) => {
-//       card.classList.toggle("hidden");
-//     });
-//     resetBtn.innerText = `${genres.length}가지 장르에 대한 ${cardsToShow.length}개의 검색 결과 초기화`;
-//   }
-// };
-
 function onDarkmodeBtnClicked(e) {
   document.querySelector("body").classList.toggle("dark-mode");
   header.classList.toggle("dark-mode");
@@ -205,18 +136,14 @@ function onDarkmodeBtnClicked(e) {
 }
 
 function onResetBtnClicked(e) {
-  // e.target.classList.add("invisible");
-  filter = "";
-  const cards = document.querySelectorAll(".movie-card");
   const resetBtn = document.querySelector(".button-reset");
   const genreChecked = document.querySelectorAll(".checked");
   const filterBtn = document.querySelector(".button-filter");
-
+  console.log(e.target);
   genreChecked.forEach((genreItem) => genreItem.click());
-  filterBtn.click();
+  document.querySelector("fieldset").classList.add("hidden");
   resetBtn.innerHTML = "검색 결과 초기화";
-
-  closeGenreBox();
+  showAllCards();
 }
 
 // submitBtn.addEventListener("click", onSearchClicked);
@@ -235,8 +162,4 @@ getGenre();
 
 const searchInput = document.querySelector("#search-input");
 const form = document.querySelector("#nav-search");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  console.log(e.target);
-  handleSearch(searchInput.value);
-});
+form.addEventListener("submit", handleSearch);

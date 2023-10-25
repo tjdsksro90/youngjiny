@@ -13,14 +13,4 @@ export function handleFilter(genresToFilter) {
     return card.getAttribute("data-id");
   });
   console.log(stringifiedFilterResult);
-
-  // if (String(prevFiltered) === String(stringifiedFilterResult)) {
-  //   getMovie(++page);
-  // } else {
-  //   prevFiltered = stringifiedFilterResult;
-  //   cardsToDel.forEach((card) => {
-  //     card.classList.toggle("hidden");
-  //   });
-  //   resetBtn.innerText = `${genresToFilter.length}가지 장르에 대한 ${cardsToShow.length}개의 검색 결과 초기화`;
-  // }
 }
