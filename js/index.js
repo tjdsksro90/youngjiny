@@ -21,14 +21,11 @@ const options = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTVlZDU5NmIzNTk4ODZmNjY1MDdmOTgzMjM2NWVmNCIsInN1YiI6IjY1MmY4NGU2ZWE4NGM3MDBjYTEyZGYxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EIRykaMpZeWLXpjyuX2pzqu0h562vsjwcptRXfSwL0s",
-  },
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTVlZDU5NmIzNTk4ODZmNjY1MDdmOTgzMjM2NWVmNCIsInN1YiI6IjY1MmY4NGU2ZWE4NGM3MDBjYTEyZGYxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EIRykaMpZeWLXpjyuX2pzqu0h562vsjwcptRXfSwL0s"
+  }
 };
 const fetchMovieData = async (page = 1) => {
-  const { results } = await fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,
-    options
-  )
+  const { results } = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`, options)
     .then((response) => response.json())
     .catch((err) => console.error(err));
   return results;
@@ -53,8 +50,7 @@ const makeMovieCards = async () => {
   cardList.innerHTML = movies
     .map((movie) => {
       // 영화 객체의 제목, 이미지경로, 내용, 평점 property를 구조 분해 및 할당을 이용해 저장한다
-      const { title, poster_path, overview, vote_average, id, genre_ids } =
-        movie;
+      const { title, poster_path, overview, vote_average, id, genre_ids } = movie;
       return `<article data-id=${id} data-genres="${genre_ids}" class="movie-card">
         <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
         <div class="movie-card-content">
@@ -100,10 +96,6 @@ const makeGenre = (genres) => {
   genreContainer.addEventListener("click", onGenreItemClicked);
 
   function onGenreItemClicked(e) {
-    // if ((filter = "title")) {
-    //   prevFiltered = [];
-    // }
-    // filter = "genre";
     const genre = e.target.getAttribute("data-genre");
     if (e.target === genreContainer) return;
     if (e.target.matches(".label-checkbox")) {
@@ -128,15 +120,6 @@ const onMoreBtnClicked = (e) => {
 // 검색 버튼 이벤트 핸들러
 const onSearchClicked = (e) => {
   e.preventDefault();
-  // 검색 버튼을 누르기 이전에 적용되었던 필터가 장르별 검색 필터라면, 장르 선택을 모두 취소하고 장르 선택 창을 숨긴다
-  // 또한 필터가 바뀌기 때문에 이전에 필터되었던 항목도 비운다
-  if (filter === "genre") {
-    removeGenres();
-    closeGenreBox();
-    prevFiltered = [];
-  }
-  // 필터를 바꿈
-  filter = "title";
   const input = document.getElementById("input");
   value = input.value;
   filterMovies(filter, value);
@@ -167,12 +150,8 @@ const onDarkmodeBtnClicked = (e) => {
   document.querySelectorAll("ul label").forEach((btn) => {
     btn.classList.toggle("dark-mode-buttons");
   });
-  document.Array.from(querySelectorAll(".movie-card")).forEach((card) =>
-    card.classList.toggle("dark-mode")
-  );
-  document.Array.from(querySelectorAll("p")).forEach((p) =>
-    p.classList.toggle("dark-mode")
-  );
+  document.Array.from(querySelectorAll(".movie-card")).forEach((card) => card.classList.toggle("dark-mode"));
+  document.Array.from(querySelectorAll("p")).forEach((p) => p.classList.toggle("dark-mode"));
   // e.target.closest("div").classList.toggle("dark-mode-buttons");
 };
 
@@ -230,9 +209,7 @@ const filterByTitle = (cards, value) => {
     console.log("hey");
   } else {
     prevFiltered = stringifiedFilterResult;
-    cardsToDel.forEach((card) =>
-      card.closest(".movie-card").classList.toggle("hidden")
-    );
+    cardsToDel.forEach((card) => card.closest(".movie-card").classList.toggle("hidden"));
     resetBtn.innerText = `'${value}' 에 대한 ${cardsToShow.length}개의 검색 결과 초기화`;
   }
 };
