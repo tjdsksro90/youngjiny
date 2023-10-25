@@ -98,11 +98,13 @@ const makeGenre = (genres) => {
     if (e.target.matches(".checkbox")) {
       e.target.classList.toggle("checked");
     }
-
     const itemsChecked = document.querySelectorAll(".checked");
+    let genresToFilter = [];
+
     console.log(itemsChecked);
-    let genres = [];
-    itemsChecked.forEach((item) => genres.push(item.getAttribute("data-genre")));
+    itemsChecked.forEach((item) => genresToFilter.push(item.getAttribute("data-genre")));
+    for (const genre of genres) {
+    }
     // console.log(genres);
     genres.length ? handleFilter(genres) : showAllCards();
   }
