@@ -4,11 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
   </head>
   <body>
     <div class="main-wrapper">
+      <!-- 모달기능 -->
+      <modal>
+        <div class="modal_bg"></div>
+        <div class="modal_box">
+          <p class="modal_text"></p>
+          <button class="modal_btn">닫기</button>
+        </div>
+      </modal>
+      
       <header class="nav">
         <div class="nav-container">
           <div>
@@ -55,6 +65,8 @@
       </footer>
     </div>
 
+    <script src="./js/modal.js" type="module"></script>
     <script src="./js/index.js" type="module"></script>
   </body>
+
 </html>
