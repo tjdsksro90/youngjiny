@@ -18,18 +18,23 @@
           <button class="modal_btn">닫기</button>
         </div>
       </modal>
-      
+
       <header class="nav">
         <div class="nav-container">
           <div>
             <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
           </div>
+          <nav class="nav-">
+            <ul>
+              <li><a href="">영화</a></li>
+              <li><a href="">드라마</a></li>
+              <li><a href="">현재 상영중</a></li>
+            </ul>
+          </nav>
           <div class="container">
-            <div>
-              <button class="button button-darkmode" href="#">
-                <img class="icon-darkmode" src="./src/darkmode.svg" alt="darkmode" width="32px" />
-              </button>
-            </div>
+            <button class="button button-darkmode" href="#">
+              <img class="icon-darkmode" src="./src/darkmode.svg" alt="darkmode" width="32px" />
+            </button>
             <form id="nav-search">
               <label>영화 검색 </label>
               <input id="search-input" name="title" type="text" autofocus />
@@ -40,13 +45,11 @@
           </div>
         </div>
       </header>
-      <div id="sidebar-left" class="sidebar" draggable="false">
-        <aside>내배캠 최고 평점 영화 콜렉션🌞</aside>
-      </div>
-      <div id="sidebar-right" class="sidebar">
-        <aside>코딩만 하지 말고 영화도 좀 보고 살자</aside>
-      </div>
+
       <main>
+        <section></section>
+        <section></section>
+        <section></section>
         <div class="button-container">
           <button class="button button-filter">장르별로 모아보기</button>
           <fieldset class="hidden">
@@ -68,5 +71,4 @@
     <script src="./js/modal.js" type="module"></script>
     <script src="./js/index.js" type="module"></script>
   </body>
-
 </html>
