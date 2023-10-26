@@ -22,8 +22,12 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTVlZDU5NmIzNTk4ODZmNjY1MDdmOTgzMjM2NWVmNCIsInN1YiI6IjY1MmY4NGU2ZWE4NGM3MDBjYTEyZGYxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EIRykaMpZeWLXpjyuX2pzqu0h562vsjwcptRXfSwL0s"
   }
 };
+
 const fetchMovieData = async (page, media, group) => {
-  const data = await fetch(`https://api.themoviedb.org/3/${media}/${group}?language=ko-US&page=${page}`, options)
+  const data = await fetch(
+    `https://api.themoviedb.org/3/${media}/${group}?language=ko-US&page=${page}&region=KR`,
+    options
+  )
     .then((response) => response.json())
     .catch((err) => console.error(err));
   return data;
@@ -44,9 +48,9 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
   const { results, page } = data; // results === 영화 리스트, page === 페이지
   cardList.setAttribute("data-page", page);
   cardList.innerHTML += results
-    .map((movie) => {
+    .map((item) => {
       // 영화 객체의 제목, 이미지경로, 내용, 평점 property를 구조 분해 및 할당을 이용해 저장한다
-      const { title, name, poster_path, overview, vote_average, id, genre_ids } = movie;
+      const { title, name, poster_path, overview, vote_average, id, genre_ids } = item;
       const nameByMedia = media === "movie" ? title : name;
       return `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
         <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
@@ -66,8 +70,12 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
   // 카드 클릭시 ID 를 보여주기 위한 이벤트 핸들러
   function onCardClicked(e) {
     const id = e.currentTarget.getAttribute("data-id");
+    const data = {
+      id: id,
+      media: media
+    };
     location.href = "detail.html";
-    sessionStorage.setItem("id", id);
+    sessionStorage.setItem("data", JSON.stringify(data));
   }
   // 마지막 페이지까지 로드되면 더보기 버튼 비활성화
   if (page === totalPages) moreBtn.classList.toggle("invisible");

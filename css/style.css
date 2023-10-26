@@ -1,9 +1,8 @@
 @import "reset.css";
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+*,
+body {
+  font-family: "Pretendard Variable", sans-serif;
 }
 .dark-mode {
   color: white;
@@ -228,9 +227,33 @@ footer.dark-mode {
 .button-reset:hover {
   background-color: #f6fb64;
 }
-section h1 {
+
+.section-carousel {
+  margin: 46px 0;
+}
+.section h1 {
   font-size: 2rem;
-  margin: 0 32px;
+}
+.section-carousel h1 {
+  font-size: 2rem;
+  padding: 0 36px;
+  margin: 24px;
+  font-weight: 700;
+}
+.carousel {
+  width: 100%;
+}
+.card-list-main {
+  counter-reset: rank;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.card-list-main li {
+  width: 300px;
+  border: none;
 }
 .card-list {
   display: grid;
@@ -240,16 +263,43 @@ section h1 {
   padding: 0px 24px;
   margin-bottom: 24px;
   margin-top: 12px;
+  scroll-behavior: smooth;
 }
 .movie-card {
+  position: relative;
   border: 0.5px solid black;
   border-radius: 7px;
   margin: 0 8px;
+  margin-top: 6px;
   box-sizing: border-box;
   /* box-shadow: 0px 8px 8px #eee; */
   justify-self: center;
   cursor: pointer;
 }
+/* counter */
+.card-list-main .movie-card::before {
+  counter-increment: rank;
+  content: counter(rank);
+  position: absolute;
+  display: block;
+  padding: 0 22px 5px 20px;
+  color: white;
+  top: -5px;
+  left: 15px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-decoration: underline 2px;
+  box-shadow: 0px 4px 10px #000;
+  background-color: #000;
+  border-radius: 6px;
+}
+.section-carousel .card-list-main li img {
+  border-radius: 12px;
+}
+.card-list-main li div {
+  display: none;
+}
+/* counter */
 article.dark-mode {
   box-shadow: none !important;
   border: 0.5px solid white;
@@ -322,7 +372,11 @@ article p.movie-rating {
   font-size: 0.8rem;
 }
 /* detail.css */
-.testUl {
+.main-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.media-detail {
   width: 100%;
 }
 .media-detail-wrap {
@@ -331,10 +385,11 @@ article p.movie-rating {
     "img detail"
     "overview overview"
     "review review"/300px 600px;
-  grid-column-gap: 30px;
+  grid-column-gap: 64px;
   grid-row-gap: 30px;
   margin: 32px auto;
   justify-content: center;
+  box-sizing: border-box;
 }
 .media-detail-img {
   grid-area: img;
@@ -349,15 +404,26 @@ article p.movie-rating {
   display: flex;
   flex-direction: row;
   gap: 12px;
+  margin: 4px 0;
 }
+
 .media-title {
+  font-size: 2rem;
+  font-weight: 700;
   margin: 12px 0;
+}
+span.original {
+  display: block;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #888;
 }
 .media-overview {
   grid-area: overview;
 }
 .media-content-wrap dl {
-  width: 64px;
+  width: 76px;
+  color: #888;
 }
 
 /* detail.css */

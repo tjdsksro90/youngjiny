@@ -43,28 +43,30 @@
         </div>
       </div>
     </header>
-    <section class="testUl"></section>
-    <section class="comment-section">
-      <div class="comment-my">
+    <main class="main-container">
+      <section class="media-detail"></section>
+      <section class="comment-section">
+        <div class="comment-my">
           <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
-      </div>
-      <form id="comment-form" class="comment-form">
+        </div>
+        <form id="comment-form" class="comment-form">
           <div class="form-wrap comment-basic">
-              <label for="name">유저 이름</label>
-              <input type="text" id="name" maxlength="20" required />
+            <label for="name">유저 이름</label>
+            <input type="text" id="name" maxlength="20" required />
           </div>
           <div class="form-wrap comment-basic">
-              <label for="password">비밀번호</label>
-              <input type="password" id="password" maxlength="8" required></textarea>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" maxlength="8" required />
           </div>
           <div class="form-wrap comment-wrap">
-              <label for="comment" class="displayNone_IM">코멘트</label>
-              <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
+            <label for="comment" class="displayNone_IM">코멘트</label>
+            <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
           </div>
           <button type="submit" class="comment-submit">제출</button>
-      </form>
-      <ul id="comment-list" class="comment-list"></ul>
-    </section>
+        </form>
+        <ul id="comment-list" class="comment-list"></ul>
+      </section>
+    </main>
     <script src="js/modal.js"></script>
     <script src="js/detail.js"></script>
     <script src="js/review.js"></script>
