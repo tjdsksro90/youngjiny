@@ -68,7 +68,8 @@ const makeMovieCards = async (pageNum) => {
   // 카드 클릭시 ID 를 보여주기 위한 이벤트 핸들러
   function onCardClicked(e) {
     const id = e.currentTarget.getAttribute("data-id");
-    alert(`영화 ID: ${id}`);
+    location.href = "detail.html";
+    sessionStorage.setItem('id',id)
   }
   // 마지막 페이지까지 로드되면 더보기 버튼 비활성화
   if (page === totalPages) moreBtn.classList.toggle("invisible");
