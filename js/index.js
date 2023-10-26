@@ -72,7 +72,8 @@ const makeMovieCards = async () => {
   function onCardClicked(e) {
     // event의 currentTarget 프로퍼티를 사용해 자식 요소가 아닌 부모의 "data-id"를 받아올 수 있게 했다
     const id = e.currentTarget.getAttribute("data-id");
-    alert(`영화 ID: ${id}`);
+    location.href = "detail.html";
+    sessionStorage.setItem('id',id)
   }
   // 마지막 페이지까지 로드되면 더보기 버튼 비활성화
   if (page === totalPages) moreBtn.classList.toggle("invisible");
