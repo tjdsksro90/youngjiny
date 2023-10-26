@@ -1,0 +1,180 @@
+.displayNone_IM {
+  display: none !important;
+}
+
+.comment-section .comment-my {
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.comment-section .comment-my .comment-count {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4175DB;
+}
+.comment-section .comment-form {
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.comment-section .comment-form > .form-wrap {
+  position: relative;
+}
+.comment-section .comment-form > .form-wrap.comment-basic {
+  width: 300px;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.comment-section .comment-form > .form-wrap.comment-basic label {
+  font-size: 14px;
+}
+.comment-section .comment-form > .form-wrap.comment-basic input {
+  border-radius: 8px;
+  border: 1px solid #c2c4c7;
+  overflow: hidden;
+  padding: 5px;
+  flex: 1;
+}
+.comment-section .comment-form > .form-wrap.comment-wrap {
+  width: 100%;
+}
+.comment-section .comment-form > .form-wrap.comment-wrap .comment {
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 16px 16px 36px 16px;
+  min-height: 118px;
+  resize: none;
+  border: 1px solid #c2c4c7;
+  overflow: hidden;
+}
+.comment-section .comment-form .comment-submit {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 100px;
+  padding: 0 16px;
+  height: 28px;
+  border: 0;
+  transition: all 0.3s;
+  min-width: 78px;
+  background-color: #4175DB;
+  cursor: pointer;
+  margin-left: auto;
+}
+.comment-section .comment-form .comment-submit:hover, .comment-section .comment-form .comment-submit:active {
+  background-color: #102E67;
+}
+.comment-section .comment-list {
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.comment-section .comment-list > li {
+  position: relative;
+}
+.comment-section .comment-list > li .comment-box {
+  display: flex;
+  flex-direction: column;
+}
+.comment-section .comment-list > li .comment-box .comment-user {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.comment-section .comment-list > li .comment-edit .comment-edit-text {
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 16px 16px 36px 16px;
+  min-height: 118px;
+  resize: none;
+  border: 1px solid #c2c4c7;
+  overflow: hidden;
+}
+.comment-section .comment-list > li .comment-edit .btn-wrap {
+  text-align: right;
+}
+.comment-section .comment-list > li .comment-edit .btn-wrap .btn-cancel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4175DB;
+  border-radius: 100px;
+  padding: 0 16px;
+  height: 28px;
+  transition: all 0.3s;
+  min-width: 78px;
+  background-color: #fff;
+  border: 1px solid #4175DB;
+  cursor: pointer;
+}
+.comment-section .comment-list > li .comment-edit .btn-wrap .btn-cancel:hover, .comment-section .comment-list > li .comment-edit .btn-cancel:active {
+  color: #102E67;
+  border: 1px solid #102E67;
+}
+.comment-section .comment-list > li .comment-edit .btn-wrap .btn-submit {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 100px;
+  padding: 0 16px;
+  height: 28px;
+  border: 0;
+  transition: all 0.3s;
+  min-width: 78px;
+  background-color: #4175DB;
+  cursor: pointer;
+}
+.comment-section .comment-list > li .comment-edit .btn-submit:hover, .comment-section .comment-list > li .comment-edit .btn-submit:active {
+  background-color: #102E67;
+}
+.comment-section .comment-list > li .comment-more {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.comment-section .comment-list > li .comment-more .more {
+  width: 32px;
+  height: 28px;
+  border-radius: 5px;
+  background-color: #f2f4f7;
+  text-align: center;
+  padding-top: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.comment-section .comment-list > li .comment-more .more-box {
+  width: 184px;
+  min-width: auto;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 40px;
+  display: none;
+  overflow: hidden;
+}
+.comment-section .comment-list > li .comment-more .more-box.active {
+  display: flex;
+}
+.comment-section .comment-list > li .comment-more .more-box button {
+  padding: 10px 30px;
+}
+.comment-section .comment-list > li .comment-more .more-box button:hover, .comment-section .comment-list > li .comment-more .more-box button:active {
+  background-color: rgba(24, 104, 180, 0.1);
+}
