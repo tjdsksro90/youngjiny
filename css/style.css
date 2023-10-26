@@ -327,25 +327,37 @@ article p.movie-rating {
 }
 .media-detail-wrap {
   display: grid;
-  grid-template-columns: 300px 600px;
-  gap: 32px;
+  grid-template:
+    "img detail"
+    "overview overview"
+    "review review"/300px 600px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
   margin: 32px auto;
   justify-content: center;
 }
-.media-detail-container {
-}
 .media-detail-img {
+  grid-area: img;
   width: 300px;
   min-width: 300px;
   border-radius: 12px;
 }
-.media-title {
+.media-detail-container {
+  grid-area: detail;
 }
-
 .media-content-wrap {
   display: flex;
   flex-direction: row;
   gap: 12px;
+}
+.media-title {
+  margin: 12px 0;
+}
+.media-overview {
+  grid-area: overview;
+}
+.media-content-wrap dl {
+  width: 64px;
 }
 
 /* detail.css */
