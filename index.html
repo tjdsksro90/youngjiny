@@ -19,16 +19,15 @@
         </div>
       </modal>
 
-      <header class="nav">
+      <header class="header">
         <div class="nav-container">
-          <div>
-            <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
-          </div>
-          <nav class="nav-">
+          <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
+          <nav class="nav">
             <ul>
               <li><a href="">영화</a></li>
               <li><a href="">드라마</a></li>
               <li><a href="">현재 상영중</a></li>
+              <li><a href="">마이 페이지</a></li>
             </ul>
           </nav>
           <div class="container">
@@ -47,9 +46,6 @@
       </header>
 
       <main>
-        <section></section>
-        <section></section>
-        <section></section>
         <div class="button-container">
           <button class="button button-filter">장르별로 모아보기</button>
           <fieldset class="hidden">
@@ -57,14 +53,24 @@
           </fieldset>
           <button class="button button-reset">검색 결과 초기화</button>
         </div>
+        <section id="movies-popular">
+          <h1>SpartaFlix 인기 영화</h1>
+          <ul class="card-list card-list-movie"></ul>
+        </section>
+        <section id="drama-popular">
+          <h1>SpartaFlix 인기 드라마</h1>
+          <ul class="card-list card-list-tv"></ul>
+        </section>
+        <section id="people-popular" class="people-list">
+          <h1>인기 배우</h1>
+          <ul class="people-list"></ul>
+        </section>
         <section class="card-list"></section>
-        <div class="button-page-wrap">
-          <button class="button button-more-item">더 보기</button>
-        </div>
+        <!-- <button class="button button-more-item">더 보기</button> -->
       </main>
       <footer>
         <p class="cheer">리액트 3기 화이팅! B조 7팀 화이팅!</p>
-        <p class="copyright">Copyright ©2023 Song Yongseung.</p>
+        <p class="copyright">Copyright ©2023 b07.</p>
       </footer>
     </div>
 

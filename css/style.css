@@ -58,6 +58,7 @@ img {
   width: 100%;
   border-top-right-radius: 6.5px;
   border-top-left-radius: 6.5px;
+  margin-bottom: 5px;
 }
 a {
   text-decoration: none;
@@ -122,6 +123,25 @@ footer.dark-mode {
   flex-direction: row;
   margin-right: 12px;
 }
+
+.nav {
+  margin: 0 24px;
+}
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+.nav ul li {
+  width: fit-content;
+  /* padding: 0 24px; */
+}
+.nav ul li a {
+  padding: 16px 4px;
+  font-size: 1.2rem;
+}
 #nav-search {
   position: relative;
 }
@@ -152,42 +172,8 @@ footer.dark-mode {
   background: rgba(255, 255, 255, 0.6);
 }
 .main-wrapper {
-  display: grid;
-  /* grid-gap: 20px; */
-  grid-template-columns: 0.1fr 10fr 0.1fr;
-  grid-template-areas:
-    "leftbar header rightbar"
-    "leftbar content rightbar"
-    "leftbar footer rightbar";
 }
-.sidebar {
-  position: sticky;
-  align-self: start;
-  top: 0px;
-  padding: 4px 12px 0;
-  height: 100vh;
-  font-size: 3.8rem;
-  font-family: "Times New Roman", Times, serif;
-  /* color: white; */
-}
-#sidebar-right {
-  grid-area: rightbar;
-  line-height: 3.8rem;
-  padding-left: 10px;
-  border-left: 0.5px solid black;
-}
-#sidebar-right.dark-mode {
-  border-left: 0.5px solid white;
-}
-#sidebar-left {
-  grid-area: leftbar;
-  line-height: 4.5rem;
-  padding-right: 10px;
-  border-right: 0.5px solid black;
-}
-#sidebar-left.dark-mode {
-  border-right: 0.5px solid white;
-}
+
 .button-container {
   position: relative;
   display: flex;
@@ -241,6 +227,10 @@ footer.dark-mode {
 }
 .button-reset:hover {
   background-color: #f6fb64;
+}
+section h1 {
+  font-size: 2rem;
+  margin: 0 32px;
 }
 .card-list {
   display: grid;
@@ -331,6 +321,34 @@ article p.movie-rating {
 .copyright {
   font-size: 0.8rem;
 }
+/* detail.css */
+.testUl {
+  width: 100%;
+}
+.media-detail-wrap {
+  display: grid;
+  grid-template-columns: 300px 600px;
+  gap: 32px;
+  margin: 32px auto;
+  justify-content: center;
+}
+.media-detail-container {
+}
+.media-detail-img {
+  width: 300px;
+  min-width: 300px;
+  border-radius: 12px;
+}
+.media-title {
+}
+
+.media-content-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+/* detail.css */
 @media (max-width: 1440px) {
   body {
   }

@@ -9,13 +9,9 @@ const submitBtn = document.querySelector(".button-search");
 const darkmodeBtn = document.querySelector(".button-darkmode");
 const resetBtn = document.querySelector(".button-reset");
 const filterBtn = document.querySelector(".button-filter");
-const moreBtn = document.querySelector(".button-more-item");
-let page = 1;
-let filter;
-let value;
+// const moreBtn = document.querySelector(".button-more-item");
+
 let totalPages;
-let prevFiltered;
-let movieList;
 
 // TMDB API에서 Top Rated Movies 데이터 받아오기
 const options = {
@@ -26,8 +22,8 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTVlZDU5NmIzNTk4ODZmNjY1MDdmOTgzMjM2NWVmNCIsInN1YiI6IjY1MmY4NGU2ZWE4NGM3MDBjYTEyZGYxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EIRykaMpZeWLXpjyuX2pzqu0h562vsjwcptRXfSwL0s"
   }
 };
-const fetchMovieData = async (page = 1) => {
-  const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`, options)
+const fetchMovieData = async (page, media, group) => {
+  const data = await fetch(`https://api.themoviedb.org/3/${media}/${group}?language=ko-US&page=${page}`, options)
     .then((response) => response.json())
     .catch((err) => console.error(err));
   return data;
@@ -41,24 +37,26 @@ const getGenre = async () => {
 };
 
 // 영화 정보의 배열을 순회하며 영화 카드를 만드는 함수
-const makeMovieCards = async (pageNum) => {
-  const data = await fetchMovieData(pageNum);
-  const cardList = document.querySelector(".card-list");
+const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
+  const data = await fetchMovieData(pageNum, media, group);
+  const cardList =
+    media === "movie" ? document.querySelector(".card-list-movie") : document.querySelector(".card-list-tv");
   const { results, page } = data; // results === 영화 리스트, page === 페이지
   cardList.setAttribute("data-page", page);
   cardList.innerHTML += results
     .map((movie) => {
       // 영화 객체의 제목, 이미지경로, 내용, 평점 property를 구조 분해 및 할당을 이용해 저장한다
-      const { title, poster_path, overview, vote_average, id, genre_ids } = movie;
-      return `<article data-id=${id} data-genres="${genre_ids}" class="movie-card">
+      const { title, name, poster_path, overview, vote_average, id, genre_ids } = movie;
+      const nameByMedia = media === "movie" ? title : name;
+      return `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
         <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
         <div class="movie-card-content">
-          <h3 class="movie-title">${title}</h3>
+          <h3 class="movie-title">${nameByMedia}</h3>
           <p class="movie-overview">${overview}</p>
           <p class="movie-rating">${vote_average} / <span>10</span>
           </p>
         </div>
-      </article>`;
+      </li>`;
     })
     .join("");
 
@@ -69,7 +67,7 @@ const makeMovieCards = async (pageNum) => {
   function onCardClicked(e) {
     const id = e.currentTarget.getAttribute("data-id");
     location.href = "detail.html";
-    sessionStorage.setItem('id',id)
+    sessionStorage.setItem("id", id);
   }
   // 마지막 페이지까지 로드되면 더보기 버튼 비활성화
   if (page === totalPages) moreBtn.classList.toggle("invisible");
@@ -149,20 +147,23 @@ function onResetBtnClicked(e) {
   showAllCards();
 }
 
-// submitBtn.addEventListener("click", onSearchClicked);
 resetBtn.addEventListener("click", onResetBtnClicked);
 darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
-moreBtn.addEventListener("click", (e) => {
-  let curPage = document.querySelector(".card-list").getAttribute("data-page");
-  makeMovieCards(++curPage);
-});
+// moreBtn.addEventListener("click", (e) => {
+//   let curPage = document.querySelector(".card-list").getAttribute("data-page");
+//   makeCards(++curPage);
+// });
 filterBtn.addEventListener("click", (e) => {
   document.querySelector("fieldset").classList.toggle("hidden");
 });
 
-makeMovieCards();
-getGenre();
+window.addEventListener("load", function () {
+  // submitBtn.addEventListener("click", onSearchClicked);
+  makeCards(1, "movie", "popular");
+  makeCards(1, "tv", "popular");
+  getGenre();
 
-const searchInput = document.querySelector("#search-input");
-const form = document.querySelector("#nav-search");
-form.addEventListener("submit", handleSearch);
+  const searchInput = document.querySelector("#search-input");
+  const form = document.querySelector("#nav-search");
+  form.addEventListener("submit", handleSearch);
+});

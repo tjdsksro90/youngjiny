@@ -18,9 +18,32 @@
         <button class="modal_btn">닫기</button>
       </div>
     </modal>
-
-    <ul class="testUl"></ul>
-
+    <header class="header">
+      <div class="nav-container">
+        <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="">영화</a></li>
+            <li><a href="">드라마</a></li>
+            <li><a href="">현재 상영중</a></li>
+            <li><a href="">마이 페이지</a></li>
+          </ul>
+        </nav>
+        <div class="container">
+          <button class="button button-darkmode" href="#">
+            <img class="icon-darkmode" src="./src/darkmode.svg" alt="darkmode" width="32px" />
+          </button>
+          <form id="nav-search">
+            <label>영화 검색 </label>
+            <input id="search-input" name="title" type="text" autofocus />
+            <button class="button button-search" type="submit">
+              <img src="./src/search.svg" alt="search" width="32px" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <section class="testUl"></section>
     <section class="comment-section">
       <div class="comment-my">
           <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
@@ -42,7 +65,6 @@
       </form>
       <ul id="comment-list" class="comment-list"></ul>
     </section>
-
     <script src="js/modal.js"></script>
     <script src="js/detail.js"></script>
     <script src="js/review.js"></script>
