@@ -10,6 +10,7 @@ const darkmodeBtn = document.querySelector(".button-darkmode");
 // const resetBtn = document.querySelector(".button-reset");
 // const filterBtn = document.querySelector(".button-filter");
 // const moreBtn = document.querySelector(".button-more-item");
+const nowPlayBtn = document.querySelector(".button-now-play");
 
 let totalPages;
 
@@ -210,6 +211,10 @@ darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
 // filterBtn.addEventListener("click", (e) => {
 // document.querySelector("fieldset").classList.toggle("hidden");
 // });
+
+nowPlayBtn.addEventListener("click", function () {
+  location.href = "nowplay.html";
+});
 
 window.addEventListener("load", function () {
   // submitBtn.addEventListener("click", onSearchClicked);
