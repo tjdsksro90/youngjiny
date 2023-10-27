@@ -33,16 +33,27 @@ const fetchMovieData = async (page, media, group) => {
   return data;
 };
 
-const getGenre = async () => {
-  fetch("https://api.themoviedb.org/3/genre/movie/list?language=en", options)
+const fetchGenreData = async (media = "movie") => {
+  const data = await fetch(`https://api.themoviedb.org/3/genre/${media}/list?language=ko`, options)
     .then((response) => response.json())
-    .then((data) => makeGenre(data.genres))
     .catch((err) => console.error(err));
+
+  return data.genres;
+};
+
+const fetchDetailData = async (id, media) => {
+  const data = await fetch(`https://api.themoviedb.org/3/${media}/${id}?language=ko-US`, options)
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
+
+  return data.genres;
 };
 
 // 영화 정보의 배열을 순회하며 영화 카드를 만드는 함수
 const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
   const data = await fetchMovieData(pageNum, media, group);
+  let genres = await fetchGenreData(media);
+  console.log(genres);
   const cardList =
     media === "movie" ? document.querySelector(".card-list-movie") : document.querySelector(".card-list-tv");
   const { results, page } = data; // results === 영화 리스트, page === 페이지
@@ -50,20 +61,59 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
   cardList.innerHTML += results
     .map((item) => {
       // 영화 객체의 제목, 이미지경로, 내용, 평점 property를 구조 분해 및 할당을 이용해 저장한다
-      const { title, name, poster_path, overview, vote_average, id, genre_ids } = item;
-      const nameByMedia = media === "movie" ? title : name;
-      return `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
+      const { title, name, poster_path, overview, vote_average, id, genre_ids, release_date, first_air_date } = item;
+      // const genres = await fetchDetailData(id, media);
+
+      genres = genres.filter((genre) => {
+        return genre_ids.includes(genre.id);
+      });
+      const genreNames = genres.map((genre) => genre.name);
+      return media === "movie"
+        ? `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
         <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
+        <h3 class="movie-title">${title}</h3>
         <div class="movie-card-content">
-          <h3 class="movie-title">${nameByMedia}</h3>
-          <p class="movie-overview">${overview}</p>
-          <p class="movie-rating">${vote_average} / <span>10</span>
-          </p>
+          <dl>
+            <div>
+              <dt>개봉</dt>
+              <dd>${release_date}</dd>
+            </div>
+            <div>
+              <dt>장르</dt>
+              <dd>${genreNames.join(", ")}</dd>
+            </div>
+            <div>
+              <dt>평점</dt>
+              <dd class="movie-rating">${Number(vote_average).toFixed(1)}</dd>
+            </div>
+          </dl>
+          <p class="overview">${overview}</p>
         </div>
-      </li>`;
+      </li>`
+        : `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
+      <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${name}"/>
+      <h3 class="movie-title">${name}</h3>
+      <div class="movie-card-content">
+        <dl>
+            <div>
+              <dt>최초방영</dt>
+              <dd>${first_air_date}</dd>
+            </div>
+            <div>
+              <dt>장르</dt>
+              <dd>${genreNames.join(", ")}</dd>
+            </div>
+            <div>
+              <dt>평점</dt>
+              <dd class="movie-rating">${Number(vote_average).toFixed(1)}</dd>
+            </div>
+          </dl>
+          <p class="overview">${overview}</p>
+
+      </div>
+    </li>`;
     })
     .join("");
-
   for (const child of cardList.children) {
     child.addEventListener("click", onCardClicked);
   }
@@ -85,37 +135,37 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
 };
 
 // 장르를 list element로 만들어 필터리스트에 넣는 함수
-const makeGenre = (genres) => {
-  const genreContainer = document.querySelector(".genre-container");
-  genreContainer.innerHTML = genres
-    .map((genre) => {
-      return `
-    <li class="genre-item">
-      <input id="${genre.name}" class="checkbox" type="checkbox" data-genre="${genre.id}" value="${genre.name}"/>
-      <label for="${genre.name}" class="label-checkbox">${genre.name}</label>
-    </li>
-    `;
-    })
-    .join("");
+// const makeGenre = (genres) => {
+//   const genreContainer = document.querySelector(".genre-container");
+//   genreContainer.innerHTML = genres
+//     .map((genre) => {
+//       return `
+//     <li class="genre-item">
+//       <input id="${genre.name}" class="checkbox" type="checkbox" data-genre="${genre.id}" value="${genre.name}"/>
+//       <label for="${genre.name}" class="label-checkbox">${genre.name}</label>
+//     </li>
+//     `;
+//     })
+//     .join("");
 
-  genreContainer.addEventListener("click", onGenreItemClicked);
+//   genreContainer.addEventListener("click", onGenreItemClicked);
 
-  function onGenreItemClicked(e) {
-    if (e.target === genreContainer) return;
-    if (e.target.matches(".checkbox")) {
-      e.target.classList.toggle("checked");
-    }
-    const itemsChecked = document.querySelectorAll(".checked");
-    let genresToFilter = [];
+//   function onGenreItemClicked(e) {
+//     if (e.target === genreContainer) return;
+//     if (e.target.matches(".checkbox")) {
+//       e.target.classList.toggle("checked");
+//     }
+//     const itemsChecked = document.querySelectorAll(".checked");
+//     let genresToFilter = [];
 
-    console.log(itemsChecked);
-    itemsChecked.forEach((item) => genresToFilter.push(item.getAttribute("data-genre")));
-    for (const genre of genres) {
-    }
-    // console.log(genres);
-    genres.length ? handleFilter(genres) : showAllCards();
-  }
-};
+//     console.log(itemsChecked);
+//     itemsChecked.forEach((item) => genresToFilter.push(item.getAttribute("data-genre")));
+//     for (const genre of genres) {
+//     }
+//     // console.log(genres);
+//     genres.length ? handleFilter(genres) : showAllCards();
+//   }
+// };
 
 // 더 보기 버튼을 누르면 다음 top rated 영화 페이지를 로드한다
 
@@ -168,7 +218,7 @@ window.addEventListener("load", function () {
   // submitBtn.addEventListener("click", onSearchClicked);
   makeCards(1, "movie", "popular");
   makeCards(1, "tv", "popular");
-  getGenre();
+  fetchGenreData();
 
   const searchInput = document.querySelector("#search-input");
   const form = document.querySelector("#nav-search");

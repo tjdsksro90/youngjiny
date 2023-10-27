@@ -47,7 +47,7 @@ span.original {
 .media-overview {
   grid-area: overview;
 }
-.media-content-wrap dl {
+.media-content-wrap dt {
   width: 76px;
   color: #888;
 }

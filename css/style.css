@@ -243,6 +243,9 @@ footer.dark-mode {
 .carousel {
   width: 100%;
 }
+.carousel::-webkit-scrollbar {
+  display: none;
+}
 .card-list-main {
   counter-reset: rank;
   display: flex;
@@ -281,6 +284,7 @@ footer.dark-mode {
   counter-increment: rank;
   content: counter(rank);
   position: absolute;
+  z-index: 2;
   display: block;
   padding: 0 22px 5px 20px;
   color: white;
@@ -293,11 +297,44 @@ footer.dark-mode {
   background-color: #000;
   border-radius: 6px;
 }
-.section-carousel .card-list-main li img {
+.card-list-main li img {
   border-radius: 12px;
 }
-.card-list-main li div {
-  display: none;
+.card-list-main li h3 {
+  margin: 12px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.card-list-main li > div {
+  width: 300px;
+  height: 450px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0009;
+  border-radius: 12px;
+  padding: 12px 12px;
+  color: white;
+  visibility: hidden;
+}
+.card-list-main li:hover div {
+  visibility: visible;
+}
+.card-list-main dl div {
+  display: flex;
+  margin: 12px 0;
+  margin-left: 100px;
+}
+.card-list-main dl div dt {
+  width: 62px;
+  color: #bbb;
+}
+.card-list-main .overview {
+  margin-top: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.7rem;
 }
 /* counter */
 article.dark-mode {
@@ -305,9 +342,7 @@ article.dark-mode {
   border: 0.5px solid white;
   background-color: black;
 }
-.movie-card-content {
-  /* padding: 12px 16px; */
-}
+
 article p.dark-mode {
   background-color: black;
 }

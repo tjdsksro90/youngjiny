@@ -45,32 +45,28 @@ fetch(`https://api.themoviedb.org/3/${data.media}/${Number(data.id)}?language=ko
           <h1 class="media-title">${title}<span class="original">${original_title}</span></h1>
           <dl class="media-description">
             <div class="media-content-wrap">
-              <dl>개봉일자</dl>
-              <dt>${release_date}</dt>
+              <dt>개봉일자</dt>
+              <dd>${release_date}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>장르</dl>
-              <dt>${genreNames.join(", ")}</dt>
+              <dt>장르</dt>
+              <dd>${genreNames.join(", ")}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>국가</dl>
-              <dt>${country}</dt>
+              <dt>국가</dt>
+              <dd>${country}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>언어</dl>
-              <dt>${original_language}</dt>
+              <dt>언어</dt>
+              <dd>${original_language}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>러닝타임</dl>
-              <dt>${runtime}분</dt>
+              <dt>러닝타임</dt>
+              <dd>${runtime}분</dd>
             </div>
             <div class="media-content-wrap">
-              <dl></dl>
-              <dt></dt>
-            </div>
-            <div class="media-content-wrap">
-              <dl>평점</dl>
-              <dt>${Number(vote_average.toFixed(1))}</dt>
+              <dt>평점</dt>
+              <dd>${Number(vote_average.toFixed(1))}</dd>
             </div>
           </dl>
         </div>
@@ -83,32 +79,32 @@ fetch(`https://api.themoviedb.org/3/${data.media}/${Number(data.id)}?language=ko
           <h1 class="media-title">${name}<span class="original">${original_name}</span></h1>
           <dl class="media-description">
             <div class="media-content-wrap">
-              <dl>방영기간</dl>
-              <dt>${first_air_date} ~ ${last_air_date}</dt>
+              <dt>방영기간</dt>
+              <dd>${first_air_date} ~ ${last_air_date}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>장르</dl>
-              <dt>${genreNames.join(", ")}</dt>
+              <dt>장르</dt>
+              <dd>${genreNames.join(", ")}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>시즌</dl>
-              <dt>${seasons.length}</dt>
+              <dt>시즌</dt>
+              <dd>${seasons.length}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>국가</dl>
-              <dt>${country}</dt>
+              <dt>국가</dt>
+              <dd>${country}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>언어</dl>
-              <dt>${original_language}</dt>
+              <dt>언어</dt>
+              <dd>${original_language}</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>러닝타임</dl>
-              <dt>${episode_run_time}분</dt>
+              <dt>러닝타임</dt>
+              <dd>${episode_run_time}분</dd>
             </div>
             <div class="media-content-wrap">
-              <dl>평점</dl>
-              <dt>${Number(vote_average).toFixed(1)}</dt>
+              <dt>평점</dt>
+              <dd>${Number(vote_average).toFixed(1)}</dd>
             </div>
           </dl>
         </div>
