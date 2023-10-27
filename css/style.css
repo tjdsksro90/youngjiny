@@ -371,62 +371,6 @@ article p.movie-rating {
 .copyright {
   font-size: 0.8rem;
 }
-/* detail.css */
-.main-container {
-  width: 1200px;
-  margin: 0 auto;
-}
-.media-detail {
-  width: 100%;
-}
-.media-detail-wrap {
-  display: grid;
-  grid-template:
-    "img detail"
-    "overview overview"
-    "review review"/300px 600px;
-  grid-column-gap: 64px;
-  grid-row-gap: 30px;
-  margin: 32px auto;
-  justify-content: center;
-  box-sizing: border-box;
-}
-.media-detail-img {
-  grid-area: img;
-  width: 300px;
-  min-width: 300px;
-  border-radius: 12px;
-}
-.media-detail-container {
-  grid-area: detail;
-}
-.media-content-wrap {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  margin: 4px 0;
-}
-
-.media-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 12px 0;
-}
-span.original {
-  display: block;
-  font-weight: 300;
-  font-size: 1rem;
-  color: #888;
-}
-.media-overview {
-  grid-area: overview;
-}
-.media-content-wrap dl {
-  width: 76px;
-  color: #888;
-}
-
-/* detail.css */
 @media (max-width: 1440px) {
   body {
   }

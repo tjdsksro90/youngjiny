@@ -116,7 +116,6 @@ const makeGenre = (genres) => {
     genres.length ? handleFilter(genres) : showAllCards();
   }
 };
-// TODAY starts here
 
 // 더 보기 버튼을 누르면 다음 top rated 영화 페이지를 로드한다
 
