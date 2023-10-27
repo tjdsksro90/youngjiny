@@ -7,8 +7,8 @@ const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 const submitBtn = document.querySelector(".button-search");
 const darkmodeBtn = document.querySelector(".button-darkmode");
-const resetBtn = document.querySelector(".button-reset");
-const filterBtn = document.querySelector(".button-filter");
+// const resetBtn = document.querySelector(".button-reset");
+// const filterBtn = document.querySelector(".button-filter");
 // const moreBtn = document.querySelector(".button-more-item");
 
 let totalPages;
@@ -53,21 +53,18 @@ const fetchDetailData = async (id, media) => {
 const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
   const data = await fetchMovieData(pageNum, media, group);
   let genres = await fetchGenreData(media);
-  console.log(genres);
+  const { results, page } = data; // results === 영화 리스트, page === 페이지
   const cardList =
     media === "movie" ? document.querySelector(".card-list-movie") : document.querySelector(".card-list-tv");
-  const { results, page } = data; // results === 영화 리스트, page === 페이지
   cardList.setAttribute("data-page", page);
   cardList.innerHTML += results
-    .map((item) => {
+    .map((item, idx) => {
       // 영화 객체의 제목, 이미지경로, 내용, 평점 property를 구조 분해 및 할당을 이용해 저장한다
       const { title, name, poster_path, overview, vote_average, id, genre_ids, release_date, first_air_date } = item;
-      // const genres = await fetchDetailData(id, media);
-
       genres = genres.filter((genre) => {
         return genre_ids.includes(genre.id);
       });
-      const genreNames = genres.map((genre) => genre.name);
+      const genreNames = genres.map((genre, idx) => genre.name);
       return media === "movie"
         ? `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
         <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
@@ -193,26 +190,26 @@ function onDarkmodeBtnClicked(e) {
   // e.target.closest("div").classList.toggle("dark-mode-buttons");
 }
 
-function onResetBtnClicked(e) {
-  const resetBtn = document.querySelector(".button-reset");
-  const genreChecked = document.querySelectorAll(".checked");
-  const filterBtn = document.querySelector(".button-filter");
-  console.log(e.target);
-  genreChecked.forEach((genreItem) => genreItem.click());
-  document.querySelector("fieldset").classList.add("hidden");
-  resetBtn.innerHTML = "검색 결과 초기화";
-  showAllCards();
-}
+// function onResetBtnClicked(e) {
+//   const resetBtn = document.querySelector(".button-reset");
+//   const genreChecked = document.querySelectorAll(".checked");
+//   const filterBtn = document.querySelector(".button-filter");
+//   console.log(e.target);
+//   genreChecked.forEach((genreItem) => genreItem.click());
+//   document.querySelector("fieldset").classList.add("hidden");
+//   resetBtn.innerHTML = "검색 결과 초기화";
+//   showAllCards();
+// }
 
-resetBtn.addEventListener("click", onResetBtnClicked);
+// resetBtn.addEventListener("click", onResetBtnClicked);
 darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
 // moreBtn.addEventListener("click", (e) => {
 //   let curPage = document.querySelector(".card-list").getAttribute("data-page");
 //   makeCards(++curPage);
 // });
-filterBtn.addEventListener("click", (e) => {
-  document.querySelector("fieldset").classList.toggle("hidden");
-});
+// filterBtn.addEventListener("click", (e) => {
+// document.querySelector("fieldset").classList.toggle("hidden");
+// });
 
 window.addEventListener("load", function () {
   // submitBtn.addEventListener("click", onSearchClicked);
