@@ -1,0 +1,18 @@
+.btnBox {
+  background-color: yellow;
+}
+div.box1 {
+  background-color: yellow;
+  display: inline-flex;
+  flex-direction: row;
+  block-size: 50dvh;
+}
+
+div.topRate-card {
+  background-color: rgb(0, 255, 179);
+  width: 200px;
+  height: 300px;
+  display: inline-flex;
+  flex-direction: row;
+  block-size: 50dvh;
+}
