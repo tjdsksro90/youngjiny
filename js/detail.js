@@ -1,3 +1,7 @@
+const session = sessionStorage.getItem("data");
+const data = JSON.parse(session);
+console.log(data);
+
 const options = {
   method: "GET",
   headers: {
