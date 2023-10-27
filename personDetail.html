@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="./css/style.css" /> -->
+    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="stylesheet" href="./css/personDetail.css   " />
+    <link rel="stylesheet" href="./css/review.css" />
+
+    <link rel="shortcut icon" href="./src/sparta.ico" />
+    <title>SpartaFlix</title>
+  </head>
+  <body>
+    <!-- 모달기능 -->
+    <modal>
+      <div class="modal_bg"></div>
+      <div class="modal_box">
+        <p class="modal_text"></p>
+        <button class="modal_btn">닫기</button>
+      </div>
+    </modal>
+
+    <header></header>
+
+    <main>
+       
+    </main>
+
+
+
+    <section class="comment-section">
+      <div class="comment-my">
+          <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
+      </div>
+      <form id="comment-form" class="comment-form">
+          <div class="form-wrap comment-basic">
+              <label for="name">유저 이름</label>
+              <input type="text" id="name" maxlength="20" required />
+          </div>
+          <div class="form-wrap comment-basic">
+              <label for="password">비밀번호</label>
+              <input type="password" id="password" maxlength="8" required></textarea>
+          </div>
+          <div class="form-wrap comment-wrap">
+              <label for="comment" class="displayNone_IM">코멘트</label>
+              <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
+          </div>
+          <button type="submit" class="comment-submit">제출</button>
+      </form>
+      <ul id="comment-list" class="comment-list"></ul>
+    </section>
+
+    <script src="js/modal.js"></script>
+    <script src="js/personDetail.js"></script>
+    <script src="js/review.js"></script>
+  </body>
+</html>

@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="./css/style.css" /> -->
     <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="stylesheet" href="./css/detail.css   " />
     <link rel="stylesheet" href="./css/review.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
@@ -19,7 +23,77 @@
       </div>
     </modal>
 
-    <ul class="testUl"></ul>
+    <header></header>
+
+    <main>
+        <div class="detail_wrap">
+            <div class="title_wrap">
+                <p></p>
+            </div>
+            <div class="info_wrap">
+                <div class="img_box">
+                    <img class="image" src="" alt="">
+                </div>
+                <div class="info_box">
+                    <ul>
+                        <li>
+                            <p>개봉년도</p>
+                            <p>:</p>
+                            <p class="release_date"></p>
+                        </li>
+                        <li>
+                            <p>국가</p>
+                            <p>:</p>
+                            <p class="production_countries"></p>
+                        </li>
+                        <li>
+                            <p>평점</p>
+                            <p>:</p>
+                            <p class="vote_average"></p>
+                        </li>
+                        <li>
+                            <p>런타임</p>
+                            <p>:</p>
+                            <p class="runtime"></p>
+                        </li>
+                        <li>
+                            <p>제작지원</p>
+                            <p>:</p>
+                            <p class="production_companies"></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content_wrap">
+                <div class="video_box">
+                    <iframe src=""
+                     title="" 
+                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                     allowfullscreen></iframe>
+                </div>
+                <div class="content_box">
+                    <p class="content_titile">줄거리</p>
+                    <p class="content_box"></p>
+                </div>
+            </div>
+            <div class="actor_wrap">
+                <div class="actor_title">출연진</div>
+                <div class="actor_list">
+                    <div class="actor_left_btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </div>
+                    <ul>
+                        
+                    </ul>
+                    <div class="actor_right_btn">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
 
     <section class="comment-section">
       <div class="comment-my">

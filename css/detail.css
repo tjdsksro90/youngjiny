@@ -1,0 +1,176 @@
+header {
+  width: 100%;
+  height: 100px;
+  background-color: #c00;
+}
+
+main {
+  width: 100%;
+  height: auto;
+}
+.detail_wrap {
+  width: 1200px;
+  height: auto;
+  margin: 0 auto;
+}
+.info_wrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info_wrap > .img_box {
+  width: 40%;
+  height: 100%;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title_wrap {
+  width: 100%;
+  height: auto;
+  padding: 5% 0 0 5%;
+}
+.title_wrap > p {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.info_wrap > .info_box {
+  width: 60%;
+  height: 100%;
+}
+.info_wrap > .info_box > ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: self-start;
+  padding-left: 5%;
+  font-size: 1.2rem;
+}
+
+.info_wrap > .info_box > ul > li {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5% 0;
+}
+.info_wrap > .info_box > ul > li > p:nth-child(1) {
+  width: 12%;
+  font-weight: bold;
+}
+.info_wrap > .info_box > ul > li > p:nth-child(2) {
+  width: 5%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.info_wrap > .info_box > ul > li > .release_date {
+  width: 100%;
+}
+
+/* 트레일러 줄거리 보이는 섹션 */
+.content_wrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.content_wrap > .video_box {
+  width: 40%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 0 0 5%;
+  
+}
+
+.content_wrap > .video_box > iframe {
+  width: 100%;
+  height: 15rem;
+}
+.content_wrap > .content_box {
+  width: 60%;
+  height: 100%;
+  padding: 5%;
+}
+.content_wrap > .content_box > .content_titile{
+  font-size: 3rem;
+  font-weight: bold;
+}
+.content_wrap > .content_box > .content_box{
+  margin-top: 3%;
+  font-size: 1rem;
+}
+
+
+
+
+
+.actor_wrap {
+  width: 100%;
+  height: 32rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.actor_wrap > .actor_title{
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 5%;
+}
+.actor_wrap > .actor_list{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.actor_wrap > .actor_list > .actor_left_btn,
+.actor_wrap > .actor_list > .actor_right_btn{
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  opacity: 30%;
+}
+.actor_wrap > .actor_list > .actor_left_btn:hover,
+.actor_wrap > .actor_list > .actor_right_btn:hover{
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.actor_wrap > .actor_list > ul{
+  flex: 15;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+.actor_wrap > .actor_list > ul > li{
+  width: 15%;
+  margin: 0 2.5%;
+  height: 100%;
+  padding:3%;
+  cursor: pointer;
+}
+.actor_wrap > .actor_list > ul > li > .actor_name{
+  text-align: center;
+  font-size: 1.3rem;
+  padding-top: 15%;
+}
