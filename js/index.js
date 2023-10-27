@@ -49,6 +49,13 @@ const fetchDetailData = async (id, media) => {
   return data.genres;
 };
 
+const fetchTrendingPeople = async () => {
+  const data = fetch("https://api.themoviedb.org/3/trending/person/week?language=ko-US", options)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+};
+
 // 영화 정보의 배열을 순회하며 영화 카드를 만드는 함수
 const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
   const data = await fetchMovieData(pageNum, media, group);
@@ -216,6 +223,7 @@ window.addEventListener("load", function () {
   makeCards(1, "movie", "popular");
   makeCards(1, "tv", "popular");
   fetchGenreData();
+  fetchTrendingPeople();
 
   const searchInput = document.querySelector("#search-input");
   const form = document.querySelector("#nav-search");
