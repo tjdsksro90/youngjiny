@@ -1,9 +1,8 @@
 @import "reset.css";
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+*,
+body {
+  font-family: "Pretendard Variable", sans-serif;
 }
 .dark-mode {
   color: white;
@@ -58,6 +57,7 @@ img {
   width: 100%;
   border-top-right-radius: 6.5px;
   border-top-left-radius: 6.5px;
+  margin-bottom: 5px;
 }
 a {
   text-decoration: none;
@@ -122,6 +122,25 @@ footer.dark-mode {
   flex-direction: row;
   margin-right: 12px;
 }
+
+.nav {
+  margin: 0 24px;
+}
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+.nav ul li {
+  width: fit-content;
+  /* padding: 0 24px; */
+}
+.nav ul li a {
+  padding: 16px 4px;
+  font-size: 1.2rem;
+}
 #nav-search {
   position: relative;
 }
@@ -152,42 +171,8 @@ footer.dark-mode {
   background: rgba(255, 255, 255, 0.6);
 }
 .main-wrapper {
-  display: grid;
-  /* grid-gap: 20px; */
-  grid-template-columns: 0.1fr 10fr 0.1fr;
-  grid-template-areas:
-    "leftbar header rightbar"
-    "leftbar content rightbar"
-    "leftbar footer rightbar";
 }
-.sidebar {
-  position: sticky;
-  align-self: start;
-  top: 0px;
-  padding: 4px 12px 0;
-  height: 100vh;
-  font-size: 3.8rem;
-  font-family: "Times New Roman", Times, serif;
-  /* color: white; */
-}
-#sidebar-right {
-  grid-area: rightbar;
-  line-height: 3.8rem;
-  padding-left: 10px;
-  border-left: 0.5px solid black;
-}
-#sidebar-right.dark-mode {
-  border-left: 0.5px solid white;
-}
-#sidebar-left {
-  grid-area: leftbar;
-  line-height: 4.5rem;
-  padding-right: 10px;
-  border-right: 0.5px solid black;
-}
-#sidebar-left.dark-mode {
-  border-right: 0.5px solid white;
-}
+
 .button-container {
   position: relative;
   display: flex;
@@ -242,6 +227,37 @@ footer.dark-mode {
 .button-reset:hover {
   background-color: #f6fb64;
 }
+
+.section-carousel {
+  margin: 46px 0;
+}
+.section h1 {
+  font-size: 2rem;
+}
+.section-carousel h1 {
+  font-size: 2rem;
+  padding: 0 36px;
+  margin: 24px;
+  font-weight: 700;
+}
+.carousel {
+  width: 100%;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.card-list-main {
+  counter-reset: rank;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.card-list-main li {
+  width: 300px;
+  border: none;
+}
 .card-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -250,24 +266,83 @@ footer.dark-mode {
   padding: 0px 24px;
   margin-bottom: 24px;
   margin-top: 12px;
+  scroll-behavior: smooth;
 }
 .movie-card {
+  position: relative;
   border: 0.5px solid black;
   border-radius: 7px;
   margin: 0 8px;
+  margin-top: 6px;
   box-sizing: border-box;
   /* box-shadow: 0px 8px 8px #eee; */
   justify-self: center;
   cursor: pointer;
 }
+/* counter */
+.card-list-main .movie-card::before {
+  counter-increment: rank;
+  content: counter(rank);
+  position: absolute;
+  z-index: 2;
+  display: block;
+  padding: 0 22px 5px 20px;
+  color: white;
+  top: -5px;
+  left: 15px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-decoration: underline 2px;
+  box-shadow: 0px 4px 10px #000;
+  background-color: #000;
+  border-radius: 6px;
+}
+.card-list-main li img {
+  border-radius: 12px;
+}
+.card-list-main li h3 {
+  margin: 12px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.card-list-main li > div {
+  width: 300px;
+  height: 450px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0009;
+  border-radius: 12px;
+  padding: 12px 12px;
+  color: white;
+  visibility: hidden;
+}
+.card-list-main li:hover div {
+  visibility: visible;
+}
+.card-list-main dl div {
+  display: flex;
+  margin: 12px 0;
+  margin-left: 100px;
+}
+.card-list-main dl div dt {
+  width: 62px;
+  color: #bbb;
+}
+.card-list-main .overview {
+  margin-top: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.7rem;
+}
+/* counter */
 article.dark-mode {
   box-shadow: none !important;
   border: 0.5px solid white;
   background-color: black;
 }
-.movie-card-content {
-  /* padding: 12px 16px; */
-}
+
 article p.dark-mode {
   background-color: black;
 }
