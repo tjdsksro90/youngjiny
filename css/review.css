@@ -3,7 +3,7 @@
 }
 
 .comment-section .comment-my {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   width: 90%;
   margin: 0 auto;
   margin-bottom: 16px;
@@ -12,10 +12,10 @@
 .comment-section .comment-my .comment-count {
   font-size: 16px;
   font-weight: 600;
-  color: #4175DB;
+  color: #4175db;
 }
 .comment-section .comment-form {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -42,6 +42,9 @@
   overflow: hidden;
   padding: 5px;
   flex: 1;
+  text-decoration: auto;
+  width: auto;
+  font-size: 14px;
 }
 .comment-section .comment-form > .form-wrap.comment-wrap {
   width: 100%;
@@ -66,12 +69,13 @@
   border: 0;
   transition: all 0.3s;
   min-width: 78px;
-  background-color: #4175DB;
+  background-color: #4175db;
   cursor: pointer;
   margin-left: auto;
 }
-.comment-section .comment-form .comment-submit:hover, .comment-section .comment-form .comment-submit:active {
-  background-color: #102E67;
+.comment-section .comment-form .comment-submit:hover,
+.comment-section .comment-form .comment-submit:active {
+  background-color: #102e67;
 }
 .comment-section .comment-list {
   max-width: 1280px;
@@ -103,25 +107,34 @@
   border: 1px solid #c2c4c7;
   overflow: hidden;
 }
+.comment-section .comment-list > li .comment-time-wrap {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.comment-section .comment-list > li .comment-time-wrap .comment-time-edit {
+  margin-left: 10px;
+  color: #888;
+}
 .comment-section .comment-list > li .comment-edit .btn-wrap {
   text-align: right;
 }
 .comment-section .comment-list > li .comment-edit .btn-wrap .btn-cancel {
   font-size: 14px;
   font-weight: 500;
-  color: #4175DB;
+  color: #4175db;
   border-radius: 100px;
   padding: 0 16px;
   height: 28px;
   transition: all 0.3s;
   min-width: 78px;
   background-color: #fff;
-  border: 1px solid #4175DB;
+  border: 1px solid #4175db;
   cursor: pointer;
 }
-.comment-section .comment-list > li .comment-edit .btn-wrap .btn-cancel:hover, .comment-section .comment-list > li .comment-edit .btn-cancel:active {
-  color: #102E67;
-  border: 1px solid #102E67;
+.comment-section .comment-list > li .comment-edit .btn-wrap .btn-cancel:hover,
+.comment-section .comment-list > li .comment-edit .btn-cancel:active {
+  color: #102e67;
+  border: 1px solid #102e67;
 }
 .comment-section .comment-list > li .comment-edit .btn-wrap .btn-submit {
   font-size: 14px;
@@ -133,11 +146,12 @@
   border: 0;
   transition: all 0.3s;
   min-width: 78px;
-  background-color: #4175DB;
+  background-color: #4175db;
   cursor: pointer;
 }
-.comment-section .comment-list > li .comment-edit .btn-submit:hover, .comment-section .comment-list > li .comment-edit .btn-submit:active {
-  background-color: #102E67;
+.comment-section .comment-list > li .comment-edit .btn-submit:hover,
+.comment-section .comment-list > li .comment-edit .btn-submit:active {
+  background-color: #102e67;
 }
 .comment-section .comment-list > li .comment-more {
   position: absolute;
@@ -157,7 +171,7 @@
   align-items: center;
 }
 .comment-section .comment-list > li .comment-more .more-box {
-  width: 184px;
+  width: 160px;
   min-width: auto;
   border-radius: 10px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
@@ -173,8 +187,26 @@
   display: flex;
 }
 .comment-section .comment-list > li .comment-more .more-box button {
-  padding: 10px 30px;
+  padding: 10px 0;
+  width: 80px;
 }
-.comment-section .comment-list > li .comment-more .more-box button:hover, .comment-section .comment-list > li .comment-more .more-box button:active {
+.comment-section .comment-list > li .comment-more .more-box button:hover,
+.comment-section .comment-list > li .comment-more .more-box button:active {
   background-color: rgba(24, 104, 180, 0.1);
+}
+.comment-section .comment-more-btn-wrap {
+  text-align: center;
+  margin-top: 20px;
+}
+.comment-section .comment-more-btn-wrap .btn-more {
+  width: 100px;
+  padding: 5px;
+  color: #fff;
+  border-radius: 100px;
+  border: 0;
+  transition: all 0.3s;
+  background-color: #4175DB;
+}
+.comment-section .comment-more-btn-wrap .btn-more:hover, .comment-section .comment-more-btn-wrap .btn-more:active {
+  background-color: #102E67;
 }
