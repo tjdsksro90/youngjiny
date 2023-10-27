@@ -8,31 +8,35 @@ function getMovieIdFromSession() {
 } // 파라미터 아이디 가져오기
 
 window.onload = function () {
-  // 경로상 ?id=000 유무 파악으로 댓글 show/hide
-  if (!(movieId == null || movieId == undefined)) loadComments();
-  else document.querySelector(".comment-section").classList.add("displayNone_IM");
+  // 경로상 id 유무 파악으로 댓글 show/hide
+  if(!(movieId == null || movieId == undefined)) loadComments();
+  else document.querySelector('.comment-section').classList.add('displayNone_IM');
 
   // 댓글 작성 폼 제출 시 실행될 함수 // html 먼저 로드 되고 기능 구현
   document.getElementById("comment-form").onsubmit = function (e) {
     e.preventDefault();
 
-    // 입력된 이름과 댓글 내용 가져오기
-    let name = document.getElementById("name").value;
-    let comment = document.getElementById("comment").value;
-    let password = document.getElementById("password").value;
+      if(document.querySelector('.btn-more').length != 0) document.querySelector('.btn-more').remove();
 
-    // 댓글 객체 생성
-    let newComment = {
-      user: name,
-      pass: password,
-      review: comment
-    };
+      // 입력된 이름과 댓글 내용 가져오기
+      let name = document.getElementById('name').value;
+      let comment = document.getElementById('comment').value;
+      let password = document.getElementById('password').value;
+
+      // 댓글 객체 생성
+      let newComment = {
+          user: name,
+          pass: password,
+          review: comment,
+          time: timeNow(), // 작성된 시간 표시
+          editTime: ''
+      };
 
     // 기존 댓글 배열 가져오기
     let comments = getCommentsForMovie(movieId);
 
-    // 새로운 댓글 추가
-    comments.push(newComment);
+      // 새로운 댓글 추가
+      comments.unshift(newComment);
 
     // 변경된 댓글 배열 저장
     setCommentsForMovie(movieId, comments);
@@ -102,11 +106,13 @@ function editcommentFormoive(idx) {
   const commentsJSON = JSON.parse(localStorage.getItem(`comments_${movieId}`));
   // 해당 요소 찾아서 수정
   commentsJSON[idx].review = editComment.value;
+  commentsJSON[idx].editTime = timeNow();
   // 해당 키 지우고 새롭게 입히기
   localStorage.removeItem(`comments_${movieId}`);
   localStorage.setItem(`comments_${movieId}`, JSON.stringify(commentsJSON));
   // 댓글 리로드
-  loadComments();
+  let comments = getCommentsForMovie(movieId);
+  document.querySelectorAll('.comment-list li')[idx].innerHTML = commentHtml(comments[idx],idx);
 }
 
 // 댓글 삭제 알림창
@@ -136,7 +142,10 @@ function delcommentFormoive(idx) {
   localStorage.removeItem(`comments_${movieId}`);
   localStorage.setItem(`comments_${movieId}`, JSON.stringify(commentsJSON));
   // 댓글 리로드
-  loadComments();
+  document.querySelectorAll('.comment-list li')[idx].remove();
+  // 리뷰 갯수 체크해서 화면에 표시
+  let comments = getCommentsForMovie(movieId);
+  document.getElementById('comment-count').innerText = comments.length;
 }
 
 // 댓글 목록 불러오기
@@ -148,34 +157,91 @@ function loadComments() {
   let comments = getCommentsForMovie(movieId);
 
   // 리뷰 갯수 체크해서 화면에 표시
-  document.getElementById("comment-count").innerText = comments.length;
+  document.getElementById('comment-count').innerText = comments.length;
+  
+  const max = 8; // 최대 8개
 
-  for (let i = 0; i < comments.length; i++) {
-    let comment = comments[i];
-
-    let listItem = document.createElement("li");
-    listItem.innerHTML = `
-      <div class="comment-box">
-          <span class='comment-user'>${comment.user}</span>
-          <span class='comment-edit-after comment-edit-after-${i}'>${comment.review}</span>
-      </div>
-      <div class="comment-edit comment-edit-before comment-edit-before-${i} displayNone_IM">
-          <textarea class="comment-edit-text comment-edit-text-${i}"></textarea>
-          <div class='btn-wrap'>
-          <button type="button" class='btn-cancel' onclick="editCommentCancel(${i})">취소</button>
-          <button type="button" class='btn-submit' onclick="editcommentFormoive(${i})">수정</button>
-          </div>
-      </div>
-      <div class="comment-more comment-edit-after comment-edit-after-${i}">
-          <p class="more" onclick='moreWrapFun(this)'><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.99967 8.33203C4.08301 8.33203 3.33301 9.08203 3.33301 9.9987C3.33301 10.9154 4.08301 11.6654 4.99967 11.6654C5.91634 11.6654 6.66634 10.9154 6.66634 9.9987C6.66634 9.08203 5.91634 8.33203 4.99967 8.33203ZM14.9997 8.33203C14.083 8.33203 13.333 9.08203 13.333 9.9987C13.333 10.9154 14.083 11.6654 14.9997 11.6654C15.9163 11.6654 16.6663 10.9154 16.6663 9.9987C16.6663 9.08203 15.9163 8.33203 14.9997 8.33203ZM9.99967 8.33203C9.08301 8.33203 8.33301 9.08203 8.33301 9.9987C8.33301 10.9154 9.08301 11.6654 9.99967 11.6654C10.9163 11.6654 11.6663 10.9154 11.6663 9.9987C11.6663 9.08203 10.9163 8.33203 9.99967 8.33203Z" fill="black"></path></svg></p>
-          <div class="more-box">
-              <button type="button" onclick="editCommentAlert(${i})">수정</button>
-              <button type="button" onclick="delCommentAlert(${i})">삭제</button>
-          </div>
-      </div>
-      `;
+  // 처음 리스트 데이터
+  for( let i = 0; i < max; i++) {
+    if(comments[i] == undefined) return 
+    let listItem = document.createElement('li');
+    listItem.innerHTML = commentHtml(comments[i],i);
     commentList.appendChild(listItem);
   }
+
+  // 마지막 리스트 도달시
+  let cnt = 1; // 버튼클릭수 
+  if(comments.length <= max) return;
+  moreBtn(comments.length,max).addEventListener('click',function(e){
+    // 클릭수
+    cnt++;
+    
+    // 다음 리스트 그리기
+    for( let i = max * ( cnt - 1 ); i < max * cnt; i++ ){
+      // 보여질 데이터 초과시 
+      if(comments[i] == undefined) {
+        e.target.remove();
+        return;
+      }
+      let listItem = document.createElement('li');
+      listItem.innerHTML = commentHtml(comments[i],i);
+      commentList.appendChild(listItem);
+    }
+  });
+}
+
+// 댓글 목록 추가 html
+const commentHtml = function (comment, i) {
+  let html = '';
+  let editTime = '';
+  comment.editTime == '' ? editTime = '' : editTime = 'Edited';
+
+  html = `
+  <div class="comment-box">
+      <span class='comment-user'>${comment.user}</span>
+      <span class='comment-edit-after comment-edit-after-${i}'>${comment.review}</span>
+  </div>
+  <div class='comment-time-wrap comment-edit-after comment-edit-after-${i}'>
+    <span class='comment-time'>${comment.time}</span><font class='comment-time-edit' title='${comment.editTime}'>${editTime}</font>
+  </div>
+  <div class="comment-edit comment-edit-before comment-edit-before-${i} displayNone_IM">
+      <textarea class="comment-edit-text comment-edit-text-${i}"></textarea>
+      <div class='btn-wrap'>
+      <button type="button" class='btn-cancel' onclick="editCommentCancel(${i})">취소</button>
+      <button type="button" class='btn-submit' onclick="editcommentFormoive(${i})">수정</button>
+      </div>
+  </div>
+  <div class="comment-more comment-edit-after comment-edit-after-${i}">
+      <p class="more" onclick='moreWrapFun(this)'><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.99967 8.33203C4.08301 8.33203 3.33301 9.08203 3.33301 9.9987C3.33301 10.9154 4.08301 11.6654 4.99967 11.6654C5.91634 11.6654 6.66634 10.9154 6.66634 9.9987C6.66634 9.08203 5.91634 8.33203 4.99967 8.33203ZM14.9997 8.33203C14.083 8.33203 13.333 9.08203 13.333 9.9987C13.333 10.9154 14.083 11.6654 14.9997 11.6654C15.9163 11.6654 16.6663 10.9154 16.6663 9.9987C16.6663 9.08203 15.9163 8.33203 14.9997 8.33203ZM9.99967 8.33203C9.08301 8.33203 8.33301 9.08203 8.33301 9.9987C8.33301 10.9154 9.08301 11.6654 9.99967 11.6654C10.9163 11.6654 11.6663 10.9154 11.6663 9.9987C11.6663 9.08203 10.9163 8.33203 9.99967 8.33203Z" fill="black"></path></svg></p>
+      <div class="more-box">
+          <button type="button" onclick="editCommentAlert(${i})">수정</button>
+          <button type="button" onclick="delCommentAlert(${i})">삭제</button>
+      </div>
+  </div>
+  `;
+
+  return html;
+};
+
+function timeNow() {
+  const gmt = new Date();
+  const today = new Date(gmt.getTime() + (gmt.getTimezoneOffset() * 60000));
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+  const hours = today.getHours();
+  const minutes = today.getMinutes();
+  const dateText = `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date} ${hours >= 10 ? hours : '0' + hours}:${minutes >= 10 ? minutes : '0' + minutes}`;
+
+  return dateText;
+}
+
+let moreBtn = (length, max) => {
+  // more button
+  let btn = document.createElement('button');
+  btn.className = 'btn-more';
+  btn.innerText = 'MORE';
+  return length > max && document.querySelector('.comment-more-btn-wrap').appendChild( btn );
 }
 
 // 수정/삭제 more 버튼 부분
