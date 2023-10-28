@@ -49,8 +49,8 @@ const fetchDetailData = async (id, media) => {
   return data.genres;
 };
 
-const fetchTrendingPeople = async () => {
-  const data = fetch("https://api.themoviedb.org/3/trending/person/week?language=ko-US", options)
+const fetchTrendingPeople = async (idx) => {
+  const data = fetch(`https://api.themoviedb.org/3/trending/person/week?language=ko-US&page=${idx}`, options)
     .then((response) => response.json())
     .then((response) => console.log(response))
     .catch((err) => console.error(err));
@@ -223,7 +223,9 @@ window.addEventListener("load", function () {
   makeCards(1, "movie", "popular");
   makeCards(1, "tv", "popular");
   fetchGenreData();
-  fetchTrendingPeople();
+  for (let i = 1; i <= 5; i++) {
+    fetchTrendingPeople(i);
+  }
 
   const searchInput = document.querySelector("#search-input");
   const form = document.querySelector("#nav-search");
