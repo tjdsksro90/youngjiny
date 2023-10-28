@@ -1,0 +1,64 @@
+.section-line {
+  border-top: 1px solid #eee;
+}
+.section-carousel.search {}
+.section-carousel.search h1 {}
+.section-carousel.search h1 .search-length {
+  color: #4175db;
+  margin-left: 5px;
+}
+.section-carousel.search .carousel {}
+.section-carousel.search .carousel .card-search-list {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 10px;
+}
+.section-carousel.search .carousel .card-search-list li {
+  width: 200px;
+  cursor: pointer;
+}
+.section-carousel.search .carousel .card-search-list li .img {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  border-radius: 10px;
+}
+.section-carousel.search .carousel .card-search-list li .img.img-null {
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section-carousel.search .carousel .card-search-list li .img img {
+  object-fit: cover;
+  margin-bottom: 0;
+}
+.section-carousel.search .carousel .card-search-list li .title {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.section-carousel.search .carousel .search-more {
+  text-align: center;
+}
+.section-carousel.search .carousel .search-more button {
+  width: 90%;
+  margin: 50px auto 0;
+  text-align: center;
+  cursor: pointer;
+  background: #efefef;
+  font-weight: bold;
+  color: #8f8f8f;
+  padding: 15px;
+  border-radius: 0 0 20px 20px;
+}

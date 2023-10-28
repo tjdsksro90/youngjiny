@@ -1,5 +1,5 @@
 "use strict";
-import { handleSearch } from "./search.js";
+// import { handleSearch } from "./search.js";
 import { handleFilter } from "./filter.js";
 
 const body = document.querySelector("body");
@@ -227,7 +227,7 @@ window.addEventListener("load", function () {
     fetchTrendingPeople(i);
   }
 
-  const searchInput = document.querySelector("#search-input");
-  const form = document.querySelector("#nav-search");
-  form.addEventListener("submit", handleSearch);
+  // const searchInput = document.querySelector("#search-input");
+  // const form = document.querySelector("#nav-search");
+  // form.addEventListener("submit", handleSearch);
 });
