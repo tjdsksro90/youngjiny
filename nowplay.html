@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="stylesheet" href="./css/nowplay.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
   </head>
   <body>
     <div class="main-wrapper">
       <!-- 모달기능 -->
-      <modal>
+      <!-- <modal>
         <div class="modal_bg"></div>
         <div class="modal_box">
           <p class="modal_text"></p>
           <button class="modal_btn">닫기</button>
         </div>
-      </modal>
+      </modal> -->
 
       <header class="header">
         <div class="nav-container">
@@ -44,33 +45,23 @@
           </div>
         </div>
       </header>
-
       <main>
-        <!-- <div class="button-container">
-          <button class="button button-filter">장르별로 모아보기</button>
-          <fieldset class="hidden">
-            <ul class="genre-container"></ul>
-          </fieldset>
-          <button class="button button-reset">검색 결과 초기화</button>
-        </div> -->
-        <section class="section-carousel" id="movies-popular">
-          <h1>SpartaFlix 영화 Top 20</h1>
-          <div class="carousel">
-            <ul class="card-list-main card-list-movie"></ul>
+        <div class="nowplay-header">
+          <h1>국내 현재 상영작</h1>
+          <div class="select-container">
+            <label for="sorting">Result Sorted By : </label>
+            <select name="sorting" id="sorted-by">
+              <option value="popularity.desc">인기순</option>
+              <option value="primary_release_date.desc">최신순</option>
+              <option value="vote_average.desc">투표순</option>
+              <option value="revenue.desc">수익순</option>
+            </select>
           </div>
-        </section>
-        <section class="section-carousel" id="drama-popular">
-          <h1>SpartaFlix 드라마 Top 20</h1>
-          <div class="carousel">
-            <ul class="card-list-main card-list-tv"></ul>
-          </div>
-        </section>
-        <section id="people-popular" class="people-list">
-          <h1>인기 배우</h1>
-          <ul class="people-list"></ul>
-        </section>
+        </div>
         <section class="card-list"></section>
-        <!-- <button class="button button-more-item">더 보기</button> -->
+        <div class="button-page-wrap">
+          <button class="button button-more-item">더 보기</button>
+        </div>
       </main>
       <footer>
         <p class="cheer">리액트 3기 화이팅! B조 7팀 화이팅!</p>
@@ -78,7 +69,7 @@
       </footer>
     </div>
 
-    <script src="./js/modal.js" type="module"></script>
-    <script src="./js/index.js" type="module"></script>
+    <!-- <script src="./js/modal.js" type="module"></script> -->
+    <script src="./js/nowplay.js" type="module"></script>
   </body>
 </html>
