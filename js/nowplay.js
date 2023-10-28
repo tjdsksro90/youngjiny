@@ -1,5 +1,3 @@
-// import { handleSearch } from "./search.js";
-
 const options = {
   method: "GET",
   headers: {
@@ -82,6 +80,21 @@ const makeNodwMovieCards = async (page, sort) => {
     cardList.innerHTML = ``;
   }
   cardList.innerHTML = cardList.innerHTML.concat(tempHTML);
+
+  // 카드 클릭시 ID 를 보여주기 위한 이벤트 핸들러
+  for (const child of cardList.children) {
+    child.addEventListener("click", onCardClicked);
+  }
+  function onCardClicked(e) {
+    console.log("jhee", e.currentTarget, " target: ", e.target);
+    const id = e.currentTarget.getAttribute("data-id");
+    const data = {
+      id: id,
+      media: "movie"
+    };
+    location.href = "detail.html";
+    sessionStorage.setItem("data", JSON.stringify(data));
+  }
 };
 
 // 시작!
@@ -110,8 +123,3 @@ sortedBy.addEventListener("change", (e) => {
 const selectQuery = (form) => {
   return form;
 };
-
-//서치바 가림
-serchBar.style.display = "none";
-// const form = document.querySelector("#nav-search");
-// form.addEventListener("submit", handleSearch);
