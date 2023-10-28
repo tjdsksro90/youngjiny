@@ -92,8 +92,8 @@ const makeLists = async (pageNum = 1, media = "movie") => {
       media: media
     };
     ( media == 'movie' ) ? window.location.href = "/detail.html"
-      : ( media == 'tv' ) ? window.location.href = "/detail.html" // TODO tv detail location으로 수정
-      : window.location.href = "/detail.html" // TODO person detail location으로 변경
+      : ( media == 'tv' ) ? window.location.href = "/TV.html"
+      : window.location.href = "/personDetail.html"
     sessionStorage.setItem("data", JSON.stringify(data));
   }
 };
