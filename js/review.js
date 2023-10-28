@@ -16,7 +16,7 @@ window.onload = function () {
   document.getElementById("comment-form").onsubmit = function (e) {
     e.preventDefault();
 
-      if(document.querySelector('.btn-more').length != 0) document.querySelector('.btn-more').remove();
+      if(document.querySelector('.btn-more') != null) document.querySelector('.btn-more').remove();
 
       // 입력된 이름과 댓글 내용 가져오기
       let name = document.getElementById('name').value;
