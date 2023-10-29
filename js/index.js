@@ -41,14 +41,6 @@ const fetchGenreData = async (media = "movie") => {
   return data.genres;
 };
 
-const fetchDetailData = async (id, media) => {
-  const data = await fetch(`https://api.themoviedb.org/3/${media}/${id}?language=ko-US`, options)
-    .then((response) => response.json())
-    .catch((err) => console.error(err));
-
-  return data.genres;
-};
-
 const fetchTrendingPeople = async () => {
   const data = await fetch(`https://api.themoviedb.org/3/trending/person/week?language=ko-US&page=1`, options)
     .then((response) => response.json())
