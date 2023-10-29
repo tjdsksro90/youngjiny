@@ -49,11 +49,12 @@ const fetchDetailData = async (id, media) => {
   return data.genres;
 };
 
-const fetchTrendingPeople = async (idx) => {
-  const data = fetch(`https://api.themoviedb.org/3/trending/person/week?language=ko-US&page=${idx}`, options)
+const fetchTrendingPeople = async () => {
+  const data = await fetch(`https://api.themoviedb.org/3/trending/person/week?language=ko-US&page=1`, options)
     .then((response) => response.json())
-    .then((response) => console.log(response))
     .catch((err) => console.error(err));
+
+  return data.results;
 };
 
 // 영화 정보의 배열을 순회하며 영화 카드를 만드는 함수
@@ -84,14 +85,14 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
             </div>
             <div>
               <dt>장르</dt>
-              <dd>${genreNames.join(", ")}</dd>
+              <dd>${genreNames.length ? genreNames.join(", ") : "분류되지 않은 장르"}</dd>
             </div>
             <div>
               <dt>평점</dt>
               <dd class="movie-rating">${Number(vote_average).toFixed(1)}</dd>
             </div>
           </dl>
-          <p class="overview">${overview}</p>
+          <p class="overview">${overview ? overview : "줄거리가 없습니다."}</p>
         </div>
       </li>`
         : `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
@@ -105,14 +106,14 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
             </div>
             <div>
               <dt>장르</dt>
-              <dd>${genreNames.join(", ")}</dd>
+              <dd>${genreNames.length ? genreNames.join(", ") : "분류되지 않은 장르"}</dd>
             </div>
             <div>
               <dt>평점</dt>
               <dd class="movie-rating">${Number(vote_average).toFixed(1)}</dd>
             </div>
           </dl>
-          <p class="overview">${overview}</p>
+          <p class="overview">${overview ? overview : "줄거리가 없습니다."}</p>
 
       </div>
     </li>`;
@@ -138,6 +139,23 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
   // filterMovies(filter, value, genres);
 };
 
+const makePeopleList = async () => {
+  const data = await fetchTrendingPeople();
+  let results = data;
+  results = results.filter((item) => item.known_for_department === "Acting");
+  const peopleList = document.querySelector(".people-list");
+  peopleList.innerHTML = results
+    .map((item) => {
+      const { id, known_for_department, name, profile_path } = item;
+      return `
+      <li class="person-popular" data-id="${id}" data-media="person">
+        <img src=https://image.tmdb.org/t/p/w185/${profile_path} alt=${name} />
+        <h3 class="person-name">${name}</h3>
+      </li>
+    `;
+    })
+    .join("");
+};
 // 장르를 list element로 만들어 필터리스트에 넣는 함수
 // const makeGenre = (genres) => {
 //   const genreContainer = document.querySelector(".genre-container");
@@ -182,18 +200,18 @@ function onDarkmodeBtnClicked(e) {
   document.querySelector("body").classList.toggle("dark-mode");
   header.classList.toggle("dark-mode");
   footer.classList.toggle("dark-mode");
-  document.querySelector("#sidebar-right").classList.toggle("dark-mode");
-  document.querySelector("#sidebar-left").classList.toggle("dark-mode");
   // filterBtn.classList.toggle("dark-mode");
   document.querySelectorAll("main .button").forEach((btn) => {
     btn.classList.toggle("dark-mode-buttons");
   });
-  document.querySelector("fieldset").classList.toggle("dark-mode-buttons");
-  document.querySelectorAll("ul label").forEach((btn) => {
-    btn.classList.toggle("dark-mode-buttons");
-  });
-  document.Array.from(querySelectorAll(".movie-card")).forEach((card) => card.classList.toggle("dark-mode"));
-  document.Array.from(querySelectorAll("p")).forEach((p) => p.classList.toggle("dark-mode"));
+  // document.querySelector("fieldset").classList.toggle("dark-mode-buttons");
+  // document.querySelectorAll("ul label").forEach((btn) => {
+  //   btn.classList.toggle("dark-mode-buttons");
+  // });
+  document.querySelectorAll(".movie-card").forEach((card) => card.classList.toggle("dark-mode"));
+  document.querySelectorAll("p").forEach((p) => p.classList.toggle("dark-mode"));
+  document.querySelectorAll(".nav ul li a").forEach((link) => link.classList.toggle("dark-mode"));
+
   // e.target.closest("div").classList.toggle("dark-mode-buttons");
 }
 
@@ -222,10 +240,8 @@ window.addEventListener("load", function () {
   // submitBtn.addEventListener("click", onSearchClicked);
   makeCards(1, "movie", "popular");
   makeCards(1, "tv", "popular");
-  fetchGenreData();
-  for (let i = 1; i <= 5; i++) {
-    fetchTrendingPeople(i);
-  }
+  makePeopleList();
+  // fetchGenreData();
 
   // const searchInput = document.querySelector("#search-input");
   // const form = document.querySelector("#nav-search");
