@@ -1,0 +1,40 @@
+h1 {
+  width: fit-content;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 20px 10px 10px 30px;
+}
+
+.card-list-main {
+  counter-reset: rank;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1800px;
+  gap: 12px;
+  margin: 12px auto 24px auto;
+  scroll-behavior: smooth;
+  overflow-x: unset;
+  overflow-y: unset;
+  flex-grow: 1;
+}
+.card-list-main li > div {
+  width: 300px;
+  height: 450px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0009;
+  border-radius: 12px;
+  padding: 12px 12px;
+  color: white;
+  visibility: hidden;
+}
+.card-list-main li img {
+  border-radius: 12px;
+  height: 450px;
+}
+
+.card-list-main .overview {
+  height: 300px;
+}
