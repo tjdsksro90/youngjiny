@@ -35,6 +35,13 @@
   justify-content: center;
   align-items: center;
 }
+.section-carousel.search .carousel .card-search-list li .img.img-null.dark-mode {
+  background-color: #ccc;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .section-carousel.search .carousel .card-search-list li .img img {
   object-fit: cover;
   margin-bottom: 0;

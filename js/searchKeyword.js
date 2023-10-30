@@ -1,3 +1,8 @@
+import { onDarkmodeBtnClicked } from "./utils.js";
+
+const darkmodeBtn = document.querySelector(".button-darkmode");
+darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
+
 const session = sessionStorage.getItem("searchKeyword");
 const searchKeyword = JSON.parse(session);
 document.querySelector("#search-input").value = searchKeyword;
