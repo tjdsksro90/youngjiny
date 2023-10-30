@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="stylesheet" href="./css/search.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
   </head>
@@ -46,32 +47,29 @@
       </header>
 
       <main>
-        <!-- <div class="button-container">
-          <button class="button button-filter">장르별로 모아보기</button>
-          <fieldset class="hidden">
-            <ul class="genre-container"></ul>
-          </fieldset>
-          <button class="button button-reset">검색 결과 초기화</button>
-        </div> -->
-        <section id="movies-popular" class="section-carousel">
-          <h1>SpartaFlix 영화 Top 20</h1>
+        <section class="section-carousel search">
+          <h1>영화<span class="search-length movie-length"></span></h1>
           <div class="carousel">
-            <ul class="card-list-main card-list-movie"></ul>
+            <ul class="card-search-list card-search-movie"></ul>
+            <div class="search-more search-more-movie"></div>
           </div>
         </section>
-        <section id="drama-popular" class="section-carousel">
-          <h1>SpartaFlix 드라마 Top 20</h1>
+        <article class="section-line"></article>
+        <section class="section-carousel search">
+          <h1>드라마<span class="search-length tv-length"></span></h1>
           <div class="carousel">
-            <ul class="card-list-main card-list-tv"></ul>
+            <ul class="card-search-list card-search-tv"></ul>
+            <div class="search-more search-more-tv" onclick="onMoreClicked(this)"></div>
           </div>
         </section>
-        <section id="people-popular" class="section-carousel">
-          <h1>인기 배우</h1>
+        <article class="section-line"></article>
+        <section class="section-carousel search">
+          <h1>인물<span class="search-length person-length"></span></h1>
           <div class="carousel">
-            <ul class="card-list-main people-list"></ul>
+            <ul class="card-search-list card-search-person"></ul>
+            <div class="search-more search-more-person" onclick="onMoreClicked(this)"></div>
           </div>
         </section>
-        <!-- <button class="button button-more-item">더 보기</button> -->
       </main>
       <footer>
         <p class="cheer">리액트 3기 화이팅! B조 7팀 화이팅!</p>
@@ -80,7 +78,7 @@
     </div>
 
     <script src="./js/modal.js" type="module"></script>
-    <script src="./js/index.js" type="module"></script>
     <script src="./js/search.js" type="module"></script>
+    <script src="./js/searchKeyword.js" type="module"></script>
   </body>
 </html>

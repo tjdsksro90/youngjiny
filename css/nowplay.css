@@ -1,0 +1,95 @@
+.nowplay-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+h1 {
+  display: inline;
+  width: fit-content;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 20px 10px 10px 30px;
+}
+label {
+  font-size: 1.2rem;
+}
+.select-container {
+  width: fit-content;
+  padding: 20px 30px 10px;
+}
+select {
+  margin-right: auto;
+  border: 0.5px solid black;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+select:focus {
+  outline: none;
+}
+.card-list {
+  display: flex; /*flex로 변경*/
+  flex-wrap: wrap;
+  max-width: 1800px;
+  /* grid-template-columns: repeat(5, 1fr); */
+  justify-content: center;
+  /* gap: 60px 20px; */
+  /* padding: 0px 24px; */
+  /* width: 100%; */
+  margin: 12px auto 24px auto;
+  scroll-behavior: smooth;
+}
+article {
+  max-width: 400px;
+  height: unset;
+  flex-grow: 1;
+}
+article h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  border-bottom: none;
+  border-top: 0.5px solid black;
+  padding: 12px 16px;
+  box-sizing: border-box;
+}
+article p.movie-release {
+  color: darkgray;
+  padding: 0 16px;
+  line-height: 1.4rem;
+  box-sizing: border-box;
+  word-break: normal;
+}
+article p.movie-rating {
+  width: fit-content;
+  /* position: absolute; */
+  /* text-align: right; */
+  /* text-align: end; */
+  font-size: 0.8rem;
+  padding: 24px 10px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: 15px;
+  margin-bottom: 12px;
+  background-color: transparent;
+  border: 0.5px solid gold;
+}
+.movie-rating span {
+  font-size: 1rem;
+  color: red;
+  font-weight: 600;
+}
+
+/* 테블릿 가로 이하 ( ~ 1023px)*/
+@media (max-width: 1023px) {
+  article {
+    max-width: 300px;
+  }
+}
+
+/* 모바일 세로 (해상도 ~ 479px)*/
+@media (max-width: 479px) {
+  article {
+    max-width: none;
+    width: 90%;
+  }
+}
