@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
-    <link rel="stylesheet" href="./css/nowplay.css" />
+    <link rel="stylesheet" href="./css/movie.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
   </head>
@@ -46,22 +46,12 @@
         </div>
       </header>
       <main>
-        <div class="nowplay-header">
-          <h1>국내 현재 상영작</h1>
-          <div class="select-container">
-            <label for="sorting">Result Sorted By : </label>
-            <select name="sorting" id="sorted-by">
-              <option value="popularity.desc">인기순</option>
-              <option value="primary_release_date.desc">최신순</option>
-              <option value="vote_average.desc">투표순</option>
-              <option value="revenue.desc">수익순</option>
-            </select>
+        <section class="moive-page" id="movies-popular">
+          <h1>인기 영화</h1>
+            <ul class="card-list-main card-list-movie"></ul>
           </div>
-        </div>
-        <section class="card-list"></section>
-        <div class="button-page-wrap">
-          <button class="button button-more-item">더 보기</button>
-        </div>
+        </section>
+        <button class="button button-more-item">더 보기</button>
       </main>
       <footer>
         <p class="cheer">리액트 3기 화이팅! B조 7팀 화이팅!</p>
@@ -70,7 +60,7 @@
     </div>
 
     <!-- <script src="./js/modal.js" type="module"></script> -->
-    <script src="./js/nowplay.js" type="module"></script>
     <script src="./js/search.js" type="module"></script>
+    <script src="./js/movie.js" type="module"></script>
   </body>
 </html>
