@@ -336,6 +336,9 @@ footer.dark-mode {
   text-overflow: ellipsis;
   line-height: 1.7rem;
 }
+
+.people-list li img {
+}
 /* counter */
 article.dark-mode {
   box-shadow: none !important;

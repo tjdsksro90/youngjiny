@@ -89,7 +89,7 @@ const makeCards = async (pageNum = 1, media = "movie", group = "top_rated") => {
       </li>`
         : `<li data-id=${id} data-genres="${genre_ids}" class="movie-card">
       <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${name}"/>
-      <h3 class="movie-title">${name}</h3>
+      <h3 class="movie-title">"${name}"</h3>
       <div class="movie-card-content">
         <dl>
             <div>
@@ -141,7 +141,7 @@ const makePeopleList = async () => {
       const { id, known_for_department, name, profile_path } = item;
       return `
       <li class="person-popular" data-id="${id}" data-media="person">
-        <img src=https://image.tmdb.org/t/p/w185/${profile_path} alt=${name} />
+        <img src=https://image.tmdb.org/t/p/w185/${profile_path} alt=${name.split(" ")} />
         <h3 class="person-name">${name}</h3>
       </li>
     `;
