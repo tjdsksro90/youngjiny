@@ -10,6 +10,9 @@ body {
   box-sizing: border-box;
   box-shadow: none !important;
 }
+.dark-mode option {
+  color: black;
+}
 
 header.dark-mode form {
   color: black;
@@ -214,6 +217,10 @@ footer.dark-mode {
   background-color: #f6fb64;
 }
 .checkbox:checked + label.dark-mode-buttons {
+  color: black;
+}
+
+.nowplay-header #sorted-by {
   color: black;
 }
 .button-filter {

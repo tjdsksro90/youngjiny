@@ -17,6 +17,4 @@ export function onDarkmodeBtnClicked(e) {
   document.querySelectorAll(".movie-card").forEach((card) => card.classList.toggle("dark-mode"));
   document.querySelectorAll("p").forEach((p) => p.classList.toggle("dark-mode"));
   document.querySelectorAll(".nav ul li a").forEach((link) => link.classList.toggle("dark-mode"));
-
-  // e.target.closest("div").classList.toggle("dark-mode-buttons");
 }
