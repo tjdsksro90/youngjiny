@@ -18,11 +18,12 @@ h1 {
   margin: 12px auto 24px auto;
   scroll-behavior: smooth;
 }
+
 .card-list > div {
   max-width: 400px;
   height: unset;
   flex-grow: 1;
-  border: 1px solid #000;
+  border: 0.5px solid #000;
   border-radius: 7px;
 }
 .card-list > div .name {
@@ -51,8 +52,8 @@ h1 {
   margin-bottom: 12px;
   background-color: transparent;
   border: 0.5px solid gold;
-  border-radius: 100%; 
-  transform: rotate(15deg)
+  border-radius: 100%;
+  transform: rotate(15deg);
 }
 .card-list > div .vote-average span {
   font-size: 1rem;
