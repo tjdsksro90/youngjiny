@@ -141,9 +141,7 @@ const makePersonDetail = async () => {
       </li>`;
     result += appList;
     appearance_list.innerHTML = result;
-    if (arrPlus > 1) {
-      plusWrap.style.display = "none"
-    }
+    
   }
 };
 
