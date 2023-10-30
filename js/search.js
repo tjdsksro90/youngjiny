@@ -3,7 +3,7 @@ const handleSearch = (e) => {
   const searchKeyword = document.querySelector("#search-input").value;
 
   if (searchKeyword == "") {
-    modalOpen("검색어를 입력해주세요");
+    modalOpen("검색어를 입력해주세요.");
   } else {
     sessionStorage.setItem("searchKeyword", JSON.stringify(searchKeyword));
     window.location.href = "/search.html";
