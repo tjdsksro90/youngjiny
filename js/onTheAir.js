@@ -124,10 +124,3 @@ const createTopRateCard = (topRates) => {
 
 const darkmodeBtn = document.querySelector(".button-darkmode");
 darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
-
-const renderTopRate = (topRates) => {
-  topRates.forEach((topRate) => {
-    const topRateCard = createTopRateCard(topRate);
-    topRateContainer.appendChild(topRateCard);
-  });
-};
