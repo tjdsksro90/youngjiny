@@ -37,11 +37,16 @@ const createOnAirCard = (onAirs) => {
       image.setAttribute("src", `https://image.tmdb.org/t/p/w500/${poster_path}`);
       nameElement.textContent = name;
       overviewElement.textContent = overview;
-      voteAverageElement.textContent = `Vote Average: ${vote_average}`;
+      voteAverageElement.innerHTML = `<span>${vote_average}</span> / 10`;
       card.setAttribute("id", id);
       card.addEventListener("click", (e) => {
         const id = e.currentTarget.getAttribute("id");
-        alert("TV Programme id: " + id);
+        const data = {
+          id: id,
+          media: "tv"
+        };
+        location.href = "detail.html";
+        sessionStorage.setItem("data", JSON.stringify(data))
       });
       card.appendChild(image);
       card.appendChild(nameElement);
