@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
-    <link rel="stylesheet" href="./css/search.css" />
+    <link rel="stylesheet" href="./css/movie.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
   </head>
@@ -16,9 +16,9 @@
           <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
           <nav class="nav">
             <ul>
-              <li><a href="">영화</a></li>
-              <li><a href="">드라마</a></li>
-              <li><a href="./nowplay.html">현재 상영중</a></li>
+              <li><a href="movie.html">영화</a></li>
+              <li><a href="TV.html">드라마</a></li>
+              <li><a href="nowplay.html">현재 상영중</a></li>
             </ul>
           </nav>
           <div class="container">
@@ -35,31 +35,13 @@
           </div>
         </div>
       </header>
-
       <main>
-        <section class="section-carousel search">
-          <h1>영화<span class="search-length movie-length"></span></h1>
-          <div class="carousel">
-            <ul class="card-search-list card-search-movie"></ul>
-            <div class="search-more search-more-movie"></div>
+        <section class="moive-page" id="movies-popular">
+          <h1>인기 영화</h1>
+            <ul class="card-list-main card-list-movie"></ul>
           </div>
         </section>
-        <article class="section-line"></article>
-        <section class="section-carousel search">
-          <h1>드라마<span class="search-length tv-length"></span></h1>
-          <div class="carousel">
-            <ul class="card-search-list card-search-tv"></ul>
-            <div class="search-more search-more-tv" onclick="onMoreClicked(this)"></div>
-          </div>
-        </section>
-        <article class="section-line"></article>
-        <section class="section-carousel search">
-          <h1>인물<span class="search-length person-length"></span></h1>
-          <div class="carousel">
-            <ul class="card-search-list card-search-person"></ul>
-            <div class="search-more search-more-person" onclick="onMoreClicked(this)"></div>
-          </div>
-        </section>
+        <button class="button button-more-item">더 보기</button>
       </main>
       <!-- 모달기능 -->
       <modal>
@@ -74,9 +56,8 @@
         <p class="copyright">Copyright ©2023 b07.</p>
       </footer>
     </div>
-
+    <script src="./js/movie.js" type="module"></script>
     <script src="./js/modal.js"></script>
     <script src="./js/search.js" type="module"></script>
-    <script src="./js/searchKeyword.js" type="module"></script>
   </body>
 </html>

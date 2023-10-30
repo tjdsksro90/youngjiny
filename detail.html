@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
     <link rel="stylesheet" href="./css/detail.css   " />
@@ -14,15 +18,6 @@
     <title>SpartaFlix</title>
   </head>
   <body>
-    <!-- 모달기능 -->personDetail
-    <modal>
-      <div class="modal_bg"></div>
-      <div class="modal_box">
-        <p class="modal_text"></p>
-        <button class="modal_btn">닫기</button>
-      </div>
-    </modal>
-
     <header class="header">
       <div class="nav-container">
         <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
@@ -30,8 +25,7 @@
           <ul>
             <li><a href="">영화</a></li>
             <li><a href="">드라마</a></li>
-            <li><a href="./nowplay.html">현재 상영중</a></li>
-            <li><a href="">마이 페이지</a></li>
+            <li><a href="">현재 상영중</a></li>
           </ul>
         </nav>
         <div class="container">
@@ -51,100 +45,103 @@
 
     <main>
       <div class="detail_wrap">
-          <div class="title_wrap">
-              <p></p>
+        <div class="title_wrap">
+          <p></p>
+        </div>
+        <div class="info_wrap">
+          <div class="img_box">
+            <img class="image" src="" alt="" />
           </div>
-          <div class="info_wrap">
-              <div class="img_box">
-                  <img class="image" src="" alt="">
-              </div>
-              <div class="info_box">
-                  <ul>
-                      <li>
-                          <p class="list_title1">개봉년도</p>
-                          <p>:</p>
-                          <p class="release_date"></p>
-                      </li>
-                      <li>
-                          <p class="list_title2">국가</p>
-                          <p>:</p>
-                          <p class="production_countries"></p>
-                      </li>
-                      <li>
-                          <p class="list_title3">평점</p>
-                          <p>:</p>
-                          <p class="vote_average"></p>
-                      </li>
-                      <li>
-                          <p class="list_title4">런타임</p>
-                          <p>:</p>
-                          <p class="runtime"></p>
-                      </li>
-                      <li>
-                          <p class="list_title5">제작지원</p>
-                          <p>:</p>
-                          <p class="production_companies"></p>
-                      </li>
-                  </ul>
-              </div>
+          <div class="info_box">
+            <ul>
+              <li>
+                <p class="list_title1">개봉년도</p>
+                <p>:</p>
+                <p class="release_date"></p>
+              </li>
+              <li>
+                <p class="list_title2">국가</p>
+                <p>:</p>
+                <p class="production_countries"></p>
+              </li>
+              <li>
+                <p class="list_title3">평점</p>
+                <p>:</p>
+                <p class="vote_average"></p>
+              </li>
+              <li>
+                <p class="list_title4">런타임</p>
+                <p>:</p>
+                <p class="runtime"></p>
+              </li>
+              <li>
+                <p class="list_title5">제작지원</p>
+                <p>:</p>
+                <p class="production_companies"></p>
+              </li>
+            </ul>
           </div>
-          <div class="content_wrap">
-              <div class="video_box">
-                  <iframe src=""
-                   title="" 
-                   frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                   allowfullscreen></iframe>
-              </div>
-              <div class="content_box">
-                  <p class="content_titile">줄거리</p>
-                  <p class="content_box"></p>
-              </div>
+        </div>
+        <div class="content_wrap">
+          <div class="video_box">
+            <iframe
+              src=""
+              title=""
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
-          <div class="actor_wrap">
-              <div class="actor_title">출연진</div>
-              <div class="actor_list">
-                  <div class="actor_left_btn" onclick="leftBtnEvn()">
-                      <i class="fa-solid fa-chevron-left"></i>
-                  </div>
-                  <ul>
-                    
-                  </ul>
-                  <div class="actor_right_btn" onclick="rightBtnEvn()">
-                       <i class="fa-solid fa-chevron-right"></i>
-                  </div>
-              </div>
+          <div class="content_box">
+            <p class="content_titile">줄거리</p>
+            <p class="content_box"></p>
           </div>
+        </div>
+        <div class="actor_wrap">
+          <div class="actor_title">출연진</div>
+          <div class="actor_list">
+            <div class="actor_left_btn" onclick="leftBtnEvn()">
+              <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <ul></ul>
+            <div class="actor_right_btn" onclick="rightBtnEvn()">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
       </div>
-  </main>
+    </main>
 
-
-  <section class="comment-section">
-    <div class="comment-my">
-      <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
-    </div>
-    <form id="comment-form" class="comment-form">
-      <div class="form-wrap comment-basic">
-        <label for="name">유저 이름</label>
-        <input type="text" id="name" maxlength="20" required />
+    <section class="comment-section">
+      <div class="comment-my">
+        <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
       </div>
-      <div class="form-wrap comment-basic">
-        <label for="password">비밀번호</label>
-        <input type="password" id="password" maxlength="8" required />
+      <form id="comment-form" class="comment-form">
+        <div class="form-wrap comment-basic">
+          <label for="name">유저 이름</label>
+          <input type="text" id="name" maxlength="20" required />
+        </div>
+        <div class="form-wrap comment-basic">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" maxlength="8" required />
+        </div>
+        <div class="form-wrap comment-wrap">
+          <label for="comment" class="displayNone_IM">코멘트</label>
+          <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
+        </div>
+        <button type="submit" class="comment-submit">제출</button>
+      </form>
+      <ul id="comment-list" class="comment-list"></ul>
+      <div class="comment-more-btn-wrap"></div>
+    </section>
+    <!-- 모달기능 -->
+    <modal>
+      <div class="modal_bg"></div>
+      <div class="modal_box">
+        <p class="modal_text"></p>
+        <button class="modal_btn">닫기</button>
       </div>
-      <div class="form-wrap comment-wrap">
-        <label for="comment" class="displayNone_IM">코멘트</label>
-        <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
-      </div>
-      <button type="submit" class="comment-submit">제출</button>
-  </form>
-  <ul id="comment-list" class="comment-list"></ul>
-  <div class="comment-more-btn-wrap"></div>
-</section>
-
-
-
-
-
+    </modal>
     <script src="js/modal.js"></script>
     <script src="js/detail.js"></script>
     <script src="js/review.js"></script>

@@ -1,3 +1,5 @@
+import { onDarkmodeBtnClicked } from "./utils.js";
+
 const options = {
   method: "GET",
   headers: {
@@ -24,20 +26,22 @@ const getTodayDateString = (day) => {
   return dateString;
 };
 
-// 2주전 날짜랑 오늘 날짜 배열
+// nowPlay api 와 유사하게 이전 날짜랑 오늘 날짜 가져와 배열에 저장
 const get2WeeksAgo = () => {
   let today = new Date();
-  let weeksAgo = new Date(new Date().setDate(1 - 14));
+  let weeksAgo = new Date(new Date().setDate(today.getDate() - 39));
+  let tomorrow = new Date(new Date().setDate(today.getDate() + 3));
 
-  return [getTodayDateString(weeksAgo), getTodayDateString(today)];
+  return [getTodayDateString(weeksAgo), getTodayDateString(tomorrow)];
 };
 
-// TMDB에는 실제 상영 여부 판단 안되고 최근 개봉일 (약 2주전) 구간으로 판단함
+// nowplay api를 풀어헤친 discover api를 사용함
+// TMDB에는 실제 상영 여부는 판단 안되고 최근 개봉일 (약 한달전) 구간으로 판단함
 // 국내 상영만 보여주기 language : ko-KR (한국어) , region : KR (남한)
 const fetchNowPlaying = async (page, sort) => {
   let arrayDays = get2WeeksAgo();
   let dates = `&release_date.gte=${arrayDays[0]}&release_date.lte=${arrayDays[1]}`;
-
+  console.log(dates);
   const { results } = await fetch(
     `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&&region=KR&page=${page}&sort_by=${sort}&with_release_type=2|3${dates}`,
     options
@@ -49,13 +53,11 @@ const fetchNowPlaying = async (page, sort) => {
     })
     .catch((err) => console.error(err));
 
-  // 마지막 페이지까지 로드되면 더보기 버튼 비활성화
-
   return results;
 };
 
-// 영화 정보의 배열을 순회하며 영화 카드를 만드는 함수 :
-const makeNodwMovieCards = async (page, sort) => {
+// 영화 정보의 배열을 순회하며 영화 카드를 만드는 함수
+const makeNowMovieCards = async (page, sort) => {
   const movies = await fetchNowPlaying(page, sort);
   const cardList = document.querySelector(".card-list");
   let tempHTML = movies
@@ -99,16 +101,16 @@ const makeNodwMovieCards = async (page, sort) => {
 
 // 시작!
 const moreBtn = document.querySelector(".button-more-item"); // 더보기 버튼
-const serchBar = document.querySelector("#nav-search"); // 서치바 가림
 const sortedBy = document.querySelector("#sorted-by"); //select
+const darkmodeBtn = document.querySelector(".button-darkmode");
 let page = 1; // page를 전역 변수로 가져가야겠니? node 에 넣기?
 let totalPages = 0; // 얘는.. fetch 할때 넣어준다.
 
-makeNodwMovieCards(page, sortedBy.value);
+makeNowMovieCards(page, sortedBy.value);
 
 // 더 보기 버튼을 누르면 다음 페이지를 로드하고 마지막 페이지이면 더보기 버튼을 가린다
 const onMoreBtnClicked = () => {
-  makeNodwMovieCards(++page, sortedBy.value);
+  makeNowMovieCards(++page, sortedBy.value);
   if (page === totalPages) moreBtn.classList.add("invisible");
 };
 moreBtn.addEventListener("click", onMoreBtnClicked);
@@ -117,8 +119,10 @@ moreBtn.addEventListener("click", onMoreBtnClicked);
 sortedBy.addEventListener("change", (e) => {
   page = 1;
   moreBtn.classList.remove("invisible");
-  makeNodwMovieCards(page, e.target.value);
+  makeNowMovieCards(page, e.target.value);
 });
+
+darkmodeBtn.addEventListener("click", onDarkmodeBtnClicked);
 
 const selectQuery = (form) => {
   return form;

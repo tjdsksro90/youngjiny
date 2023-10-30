@@ -3,7 +3,7 @@
 }
 
 .comment-section .comment-my {
-  /* max-width: 1280px; */
+  max-width: 1200px;
   width: 90%;
   margin: 0 auto;
   margin-bottom: 16px;
@@ -15,7 +15,7 @@
   color: #4175db;
 }
 .comment-section .comment-form {
-  /* max-width: 1280px; */
+  max-width: 1200px;
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -78,7 +78,7 @@
   background-color: #102e67;
 }
 .comment-section .comment-list {
-  max-width: 1280px;
+  max-width: 1200px;
   width: 90%;
   margin: 0 auto;
   padding-top: 20px;
