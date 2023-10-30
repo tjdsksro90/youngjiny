@@ -1,6 +1,6 @@
 // 세션스토리지에서 인물의 id 받아오기
-let actorId = sessionStorage.getItem("actorId")
-console.log(actorId)
+let actorId = sessionStorage.getItem("actorId");
+console.log(actorId);
 const options = {
   method: "GET",
   headers: {
@@ -79,7 +79,7 @@ const makePersonDetail = async () => {
   doc_info_img.src = `https://image.tmdb.org/t/p/w500/${profile_path}`; // 인물 이미지
   doc_birthday.innerHTML = birthday; // 출생년도
   doc_place_of_birth.innerHTML = place_of_birth; // 출생지역
-  doc_gender.innerHTML = gender === 1 ? "여성" : gender === 2 ? "남성" : "알수없음" ; // 성별
+  doc_gender.innerHTML = gender === 1 ? "여성" : gender === 2 ? "남성" : "알수없음"; // 성별
   doc_biography.innerHTML = biography; // 인물소개
   doc_homepage.innerHTML = homepage; //사이트
 
@@ -111,10 +111,10 @@ const makePersonDetail = async () => {
     }
   });
   // 출연작품 리스트
-  
+
   for (let i = 0; i < castFor.length; i++) {
-    let madiaId = appBool1 === true ? movies.cast[i].id : tvSeries.cast[i].id
-    let madiaFind = appBool1 === true ? 'movie' : 'tv';
+    let madiaId = appBool1 === true ? movies.cast[i].id : tvSeries.cast[i].id;
+    let madiaFind = appBool1 === true ? "movie" : "tv";
     let appList = `<li onclick="movieDetail(${madiaId},'${madiaFind}')">
         <div class="app_img_box">
           <img src="https://image.tmdb.org/t/p/w500/${
@@ -168,12 +168,13 @@ function appListFunc(num) {
 }
 
 // 영화상세보기로 넘어가는 이벤트
-let movieDetail = (id,media) => {
+let movieDetail = (id, media) => {
   const data = {
     id: id,
+    햣,
     media: media
   };
-  
-  sessionStorage.setItem('data',JSON.stringify(data));
+
+  sessionStorage.setItem("data", JSON.stringify(data));
   window.location.href = "/detail.html";
-}
+};
