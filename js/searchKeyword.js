@@ -91,10 +91,17 @@ const makeLists = async (pageNum = 1, media = "movie") => {
       id: id,
       media: media
     };
-    ( media == 'movie' ) ? window.location.href = "/detail.html"
-      : ( media == 'tv' ) ? window.location.href = "/TV.html"
-      : window.location.href = "/personDetail.html"
-    sessionStorage.setItem("data", JSON.stringify(data));
+    if ( media == 'movie' ) {
+      window.location.href = "/detail.html"
+      sessionStorage.setItem("data", JSON.stringify(data));
+    }
+    else if ( media == 'tv' ) {
+      window.location.href = "/TV.html"
+      sessionStorage.setItem("data", JSON.stringify(data));
+    } else {
+      window.location.href = "/personDetail.html"
+      sessionStorage.setItem("actorId", JSON.stringify(Number(data.id)));
+    }
   }
 };
 
