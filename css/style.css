@@ -10,6 +10,10 @@ body {
   box-sizing: border-box;
   box-shadow: none !important;
 }
+
+header.dark-mode form {
+  color: black;
+}
 .dark-mode-buttons {
   /* background-color: #ddd; */
   color: white;
