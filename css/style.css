@@ -146,7 +146,8 @@ footer.dark-mode {
   font-size: 1.2rem;
 }
 .nav ul li a:hover {
-  text-decoration: underline solid 2px;
+  text-decoration: underline solid 1px;
+  text-underline-position: under;
 }
 #nav-search {
   position: relative;
