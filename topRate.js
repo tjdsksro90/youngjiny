@@ -17,41 +17,45 @@ fetch("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1", options
 const topRateContainer = document.getElementById("topRate-container");
 
 const createTopRateCard = (topRates) => {
-  topRates.results.forEach((topRate) => {
-    const { id, name, overview, poster_path, vote_average } = topRate;
+  topRates.results
+    .filter((topRate, i) => {
+      return true;
+    })
+    .forEach((topRate) => {
+      const { id, name, overview, poster_path, vote_average } = topRate;
 
-    const card = document.createElement("div");
-    const image = document.createElement("img");
-    const nameElement = document.createElement("h2");
-    const overviewElement = document.createElement("p");
-    const voteAverageElement = document.createElement("p");
+      const card = document.createElement("div");
+      const image = document.createElement("img");
+      const nameElement = document.createElement("div");
+      const overviewElement = document.createElement("div");
+      const voteAverageElement = document.createElement("div");
 
-    card.classList.add("topRate-card");
-    image.classList.add("poster-image");
-    nameElement.classList.add("name");
-    overviewElement.classList.add("overview");
-    voteAverageElement.classList.add("vote-average");
+      card.classList.add("topRate-card");
+      image.classList.add("poster-image");
+      nameElement.classList.add("name");
+      overviewElement.classList.add("overview");
+      voteAverageElement.classList.add("vote-average");
 
-    image.setAttribute("src", `https://image.tmdb.org/t/p/w500/${poster_path}`);
+      image.setAttribute("src", `https://image.tmdb.org/t/p/w500/${poster_path}`);
 
-    nameElement.textContent = name;
-    overviewElement.textContent = overview;
-    voteAverageElement.textContent = `Vote Average: ${vote_average}`;
+      nameElement.textContent = name;
+      overviewElement.textContent = overview;
+      voteAverageElement.textContent = `Vote Average: ${vote_average}`;
 
-    card.setAttribute("id", id);
+      card.setAttribute("id", id);
 
-    card.addEventListener("click", (e) => {
-      const id = e.currentTarget.getAttribute("id");
-      alert("드라마 id: " + id);
+      card.addEventListener("click", (e) => {
+        const id = e.currentTarget.getAttribute("id");
+        alert("TV Programme id: " + id);
+      });
+
+      card.appendChild(image);
+      card.appendChild(nameElement);
+      card.appendChild(overviewElement);
+      card.appendChild(voteAverageElement);
+
+      topRateContainer.appendChild(card);
     });
-
-    card.appendChild(image);
-    card.appendChild(nameElement);
-    card.appendChild(overviewElement);
-    card.appendChild(voteAverageElement);
-
-    topRateContainer.appendChild(card);
-  });
 };
 
 const onSearchClick = (e) => {

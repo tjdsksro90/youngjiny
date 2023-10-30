@@ -1,18 +1,37 @@
-.btnBox {
-  background-color: yellow;
-}
-div.box1 {
-  background-color: yellow;
-  display: inline-flex;
-  flex-direction: row;
-  block-size: 50dvh;
+#root-container {
+  max-width: 1200px;
+  margin: auto;
+  border: 1px solid red;
 }
 
-div.topRate-card {
-  background-color: rgb(0, 255, 179);
+#topRate-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.topRate-card {
   width: 200px;
-  height: 300px;
-  display: inline-flex;
-  flex-direction: row;
-  block-size: 50dvh;
+  border: 1px solid red;
+  margin-bottom: 20px;
+}
+
+.poster-image {
+  width: 100%;
+}
+
+#onAir-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.onAir-card {
+  width: 200px;
+  border: 1px solid red;
+  margin-bottom: 20px;
+}
+
+.poster-image {
+  width: 100%;
 }

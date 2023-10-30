@@ -4,46 +4,72 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="shortcut icon" href="./src/sparta.ico" />
     <link rel="stylesheet" href="TV.css" />
   </head>
 
-  <body>
+  <body id="root-container">
+    <div class="main-wrapper">
+      <!-- 모달기능 -->
+      <modal>
+        <div class="modal_bg"></div>
+        <div class="modal_box">
+          <p class="modal_text"></p>
+          <button class="modal_btn">닫기</button>
+        </div>
+      </modal>
+
+      <header class="header">
+        <div class="nav-container">
+          <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
+          <nav class="nav">
+            <ul>
+              <li><a href="">영화</a></li>
+              <li><a href="./TV.html">드라마</a></li>
+              <li><a href="./nowplay.html">현재 상영중</a></li>
+              <li><a href="">마이 페이지</a></li>
+            </ul>
+          </nav>
+          <div class="container">
+            <button class="button button-darkmode" href="#">
+              <img class="icon-darkmode" src="./src/darkmode.svg" alt="darkmode" width="32px" />
+            </button>
+            <form id="nav-search">
+              <label>영화 검색 </label>
+              <input id="search-input" name="title" type="text" autofocus />
+              <button class="button button-search" type="submit">
+                <img src="./src/search.svg" alt="search" width="32px" />
+              </button>
+            </form>
+          </div>
+        </div>
+      </header>
+
+    <form class="search" onsubmit="handleSearch(event)">
+      <label>영화 검색 : </label>
+      <input type="text" id="search-input" placeholder="영화 제목을 검색해 보세요" />
+      <button type="submit" id="search-btn">검색</button>
+    </form>
+
+    <h1>현재 인기작</h1>
+    <div id="section-container">
+      <div id="topRate-container"></div>
+    </div>
+
     
-    <div>제목이다</div>
-   
-<div class = "btnBox"></div>
 
-  <div>
-      <form class="search" onsubmit="handleSearch(event)">
-        <label>영화 검색 : </label>
-        <input type="text" id="search-input" placeholder="영화 제목을 검색해 보세요" />
-        <button type="submit" id="search-btn">검색</button>
-      </div>
- 
-      <div>
-        <h1>현재 인기작</h1>
-      </div>
-        <div id="topRate-container"></div>
-
-        <script src="topRate.js"></script>
-      </div>
-    </article>
-<article>
-        <div class = "box2">
-          <div class= title2>
-            <h1>현재 방영작</h1></div>
-        <div id="onTheAir-container"></div>
-
-        <script src="onTheAir.js"></script>
-      </div>
-    </article>
-    </section>
+    <h1>현재 방영작</h1>
+    <div id="section-container">
+      <div id="onAir-container"></div>
+    </div>
+    
+    <script src="topRate.js" type="module"></script>
+    <script src="onTheAir.js" type="module"></script>
+    <script src="./js/search.js" type="module"></script>
   
-      
-      </body>
-    <main>
-      
-    </main>
   </body>
+
 </html>
