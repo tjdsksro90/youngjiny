@@ -25,6 +25,7 @@ let doc_biography = document.querySelector(".person_info_wrap > .info_wrap > .in
 let doc_homepage = document.querySelector(".person_info_wrap > .info_wrap > .info_box > ul li > .homepage");
 
 let appearance_title = document.querySelectorAll(".appearance_title_box > div");
+let plusWrap = document.querySelectorAll(".plus_btn > p");
 
 // tmdb서버에 인물 data요청
 const fetchActorData = async (actorId) => {
@@ -60,6 +61,7 @@ const fetchTvData = async (actorId) => {
 };
 
 let result = "";
+let plus = 10;
 const makePersonDetail = async () => {
   const actors = await fetchActorData(actorId); // 인물데이터 요청
   const movies = await fetchMoiveData(actorId); // 인물데이터 요청
@@ -110,13 +112,14 @@ const makePersonDetail = async () => {
       return 0;
     }
   });
-  // 출연작품 리스트
   
-  for (let i = 0; i < castFor.length; i++) {
+  // 출연작품 리스트
+  let arrPlus = plus/castFor
+  for (let i = 0; i < plus; i++) {
     let madiaId = appBool1 === true ? movies.cast[i].id : tvSeries.cast[i].id
     let madiaFind = appBool1 === true ? 'movie' : 'tv';
-    let appList = `<li onclick="movieDetail(${madiaId},'${madiaFind}')">
-        <div class="app_img_box">
+    let appList = `<li>
+        <div class="app_img_box"onclick="movieDetail(${madiaId},'${madiaFind}')">
           <img src="https://image.tmdb.org/t/p/w500/${
             appBool1 === true ? movies.cast[i].poster_path : tvSeries.cast[i].poster_path
           }" alt="">
@@ -138,10 +141,12 @@ const makePersonDetail = async () => {
       </li>`;
     result += appList;
     appearance_list.innerHTML = result;
+    if (arrPlus > 1) {
+      plusWrap.style.display = "none"
+    }
   }
 };
 
-makePersonDetail();
 
 // 출여작품 탭매뉴 버튼
 appearance_title[0].addEventListener("click", () => {
@@ -167,6 +172,14 @@ function appListFunc(num) {
   overview.classList.toggle("active");
 }
 
+// 출연작품 리스트의 줄거리 자세히 보기
+let info_list = document.querySelector(".info_wrap > .info_box > ul > li:nth-child(4) >  p:nth-child(3)");
+
+function inforListFunc(num) {
+
+  info_list.classList.toggle("active");
+}
+
 // 영화상세보기로 넘어가는 이벤트
 let movieDetail = (id,media) => {
   const data = {
@@ -177,3 +190,10 @@ let movieDetail = (id,media) => {
   sessionStorage.setItem('data',JSON.stringify(data));
   window.location.href = "/detail.html";
 }
+
+let plusBtn = () =>{
+  plus += 10;
+  console.log(plus)
+}
+
+makePersonDetail();
