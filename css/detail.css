@@ -1,53 +1,191 @@
-.main-container {
+
+
+main {
+  width: 100%;
+  height: auto;
+}
+.detail_wrap {
   width: 1200px;
+  height: auto;
   margin: 0 auto;
 }
-.media-detail {
+.info_wrap {
   width: 100%;
-}
-.media-detail-wrap {
-  display: grid;
-  grid-template:
-    "img detail"
-    "overview overview"
-    "review review"/300px 600px;
-  grid-column-gap: 64px;
-  grid-row-gap: 30px;
-  margin: 32px auto;
-  justify-content: center;
-  box-sizing: border-box;
-}
-.media-detail-img {
-  grid-area: img;
-  width: 300px;
-  min-width: 300px;
-  border-radius: 12px;
-}
-.media-detail-container {
-  grid-area: detail;
-}
-.media-content-wrap {
+  height: auto;
   display: flex;
-  flex-direction: row;
-  gap: 12px;
-  margin: 4px 0;
+  justify-content: center;
+  align-items: center;
+}
+.info_wrap > .img_box {
+  width: 40%;
+  height: 100%;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.media-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 12px 0;
+.title_wrap {
+  width: 100%;
+  height: auto;
+  padding: 5% 0 0 5%;
 }
-span.original {
-  display: block;
-  font-weight: 300;
+.title_wrap > p {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.info_wrap > .info_box {
+  width: 60%;
+  height: 100%;
+}
+.info_wrap > .info_box > ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: self-start;
+  padding-left: 5%;
+  font-size: 1.2rem;
+}
+
+.info_wrap > .info_box > ul > li {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5% 0;
+}
+.info_wrap > .info_box > ul > li > p:nth-child(1) {
+  width: 12%;
+  font-weight: bold;
+}
+.info_wrap > .info_box > ul > li > p:nth-child(2) {
+  width: 5%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.info_wrap > .info_box > ul > li > .release_date {
+  width: 100%;
+}
+
+/* 트레일러 줄거리 보이는 섹션 */
+.content_wrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.content_wrap > .video_box {
+  width: 40%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 0 0 5%;
+  
+}
+
+.content_wrap > .video_box > iframe {
+  width: 100%;
+  height: 15rem;
+}
+.content_wrap > .content_box {
+  width: 60%;
+  height: 100%;
+  padding: 5%;
+}
+.content_wrap > .content_box > .content_titile{
+  font-size: 3rem;
+  font-weight: bold;
+}
+.content_wrap > .content_box > .content_box{
+  margin-top: 3%;
   font-size: 1rem;
-  color: #888;
 }
-.media-overview {
-  grid-area: overview;
+
+
+
+
+
+.actor_wrap {
+  width: 100%;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
-.media-content-wrap dt {
-  width: 76px;
-  color: #888;
+.actor_wrap > .actor_title{
+  flex: 1;
+  width: auto;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
 }
+.actor_wrap > .actor_list{
+  flex: 4;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}.actor_wrap > .actor_list > .actor_left_btn,
+.actor_wrap > .actor_list > .actor_right_btn{
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  opacity: 30%;
+}
+.actor_wrap > .actor_list > .actor_left_btn:hover,
+.actor_wrap > .actor_list > .actor_right_btn:hover{
+  opacity: 100%;
+  cursor: pointer;
+}
+.actor_wrap > .actor_list > ul{
+  position: relative;
+  flex: 15;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+ 
+.actor_wrap > .actor_list > ul > li{
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  /* padding:3%; */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+.actor_wrap > .actor_list > ul > li > .img_box{
+  width: 60%;
+  height: auto;
+}
+
+.actor_wrap > .actor_list > ul > li > .actor_name{
+  text-align: center;
+  font-size: 1.3rem;
+  padding-top: 15%;
+} 
+
+
+
+

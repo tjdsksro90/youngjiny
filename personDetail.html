@@ -8,13 +8,13 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
-    <link rel="stylesheet" href="./css/detail.css   " />
+    <link rel="stylesheet" href="./css/personDetail.css   " />
     <link rel="stylesheet" href="./css/review.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
   </head>
   <body>
-    <!-- 모달기능 -->personDetail
+    <!-- 모달기능 -->
     <modal>
       <div class="modal_bg"></div>
       <div class="modal_box">
@@ -50,7 +50,7 @@
     </header>
 
     <main>
-      <div class="detail_wrap">
+      <div class="person_info_wrap">
           <div class="title_wrap">
               <p></p>
           </div>
@@ -61,58 +61,43 @@
               <div class="info_box">
                   <ul>
                       <li>
-                          <p class="list_title1">개봉년도</p>
+                          <p class="list_title1">출생년도</p>
                           <p>:</p>
-                          <p class="release_date"></p>
+                          <p class="birthday"></p>
                       </li>
                       <li>
-                          <p class="list_title2">국가</p>
+                          <p class="list_title2">출생지역</p>
                           <p>:</p>
-                          <p class="production_countries"></p>
+                          <p class="place_of_birth"></p>
                       </li>
                       <li>
-                          <p class="list_title3">평점</p>
+                          <p class="list_title3">성별</p>
                           <p>:</p>
-                          <p class="vote_average"></p>
+                          <p class="gender"></p>
                       </li>
                       <li>
-                          <p class="list_title4">런타임</p>
+                          <p class="list_title4">인물소개</p>
                           <p>:</p>
-                          <p class="runtime"></p>
+                          <p class="biography"></p>
                       </li>
                       <li>
-                          <p class="list_title5">제작지원</p>
+                          <p class="list_title5">사이트</p>
                           <p>:</p>
-                          <p class="production_companies"></p>
+                          <p class="homepage"></p>
                       </li>
                   </ul>
               </div>
           </div>
-          <div class="content_wrap">
-              <div class="video_box">
-                  <iframe src=""
-                   title="" 
-                   frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                   allowfullscreen></iframe>
-              </div>
-              <div class="content_box">
-                  <p class="content_titile">줄거리</p>
-                  <p class="content_box"></p>
-              </div>
-          </div>
-          <div class="actor_wrap">
-              <div class="actor_title">출연진</div>
-              <div class="actor_list">
-                  <div class="actor_left_btn" onclick="leftBtnEvn()">
-                      <i class="fa-solid fa-chevron-left"></i>
-                  </div>
-                  <ul>
-                    
-                  </ul>
-                  <div class="actor_right_btn" onclick="rightBtnEvn()">
-                       <i class="fa-solid fa-chevron-right"></i>
-                  </div>
-              </div>
+          <div class="appearance_wrap">
+            <div class="appearance_title_box">
+              <div class="movie_title active">필모그래피</div>
+              <div class="tv_title">방송출연</div>
+            </div>
+            <div class="appearance_list_box">
+              <ul>
+                
+              </ul>
+            </div>
           </div>
       </div>
   </main>
@@ -120,33 +105,32 @@
 
   <section class="comment-section">
     <div class="comment-my">
-      <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
+        <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
     </div>
     <form id="comment-form" class="comment-form">
-      <div class="form-wrap comment-basic">
-        <label for="name">유저 이름</label>
-        <input type="text" id="name" maxlength="20" required />
-      </div>
-      <div class="form-wrap comment-basic">
-        <label for="password">비밀번호</label>
-        <input type="password" id="password" maxlength="8" required />
-      </div>
-      <div class="form-wrap comment-wrap">
-        <label for="comment" class="displayNone_IM">코멘트</label>
-        <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
-      </div>
-      <button type="submit" class="comment-submit">제출</button>
-  </form>
-  <ul id="comment-list" class="comment-list"></ul>
-  <div class="comment-more-btn-wrap"></div>
-</section>
+        <div class="form-wrap comment-basic">
+            <label for="name">유저 이름</label>
+            <input type="text" id="name" maxlength="20" required />
+        </div>
+        <div class="form-wrap comment-basic">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" maxlength="8" required></textarea>
+        </div>
+        <div class="form-wrap comment-wrap">
+            <label for="comment" class="displayNone_IM">코멘트</label>
+            <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
+        </div>
+        <button type="submit" class="comment-submit">제출</button>
+    </form>
+    <ul id="comment-list" class="comment-list"></ul>
+  </section>
 
 
 
 
 
     <script src="js/modal.js"></script>
-    <script src="js/detail.js"></script>
+    <script src="js/personDetail.js"></script>
     <script src="js/review.js"></script>
     <script src="js/search.js"></script>
   </body>
