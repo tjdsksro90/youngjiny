@@ -141,6 +141,9 @@ footer.dark-mode {
   padding: 16px 4px;
   font-size: 1.2rem;
 }
+.nav ul li a:hover {
+  text-decoration: underline solid 2px;
+}
 #nav-search {
   position: relative;
 }
@@ -166,9 +169,10 @@ footer.dark-mode {
   font-size: 1rem;
   position: absolute;
   width: 32px;
+  height: 32px;
   top: 6px;
   right: 10px;
-  background: rgba(255, 255, 255, 0.6);
+  background: none;
 }
 .main-wrapper {
 }
@@ -337,7 +341,19 @@ footer.dark-mode {
   line-height: 1.7rem;
 }
 
+.people-list ul {
+}
+.people-list li {
+  width: 200px;
+  height: 300px;
+  margin: 0 8px;
+  cursor: pointer;
+}
 .people-list li img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100%;
 }
 /* counter */
 article.dark-mode {

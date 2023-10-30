@@ -134,4 +134,14 @@ export const makePeopleList = async () => {
       `;
     })
     .join("");
+
+  for (const child of peopleList.children) {
+    child.addEventListener("click", onPersonClicked);
+  }
+
+  function onPersonClicked(e) {
+    const id = e.currentTarget.getAttribute("data-id");
+    location.href = "personDetail.html";
+    sessionStorage.setItem("actorId", id);
+  }
 };
