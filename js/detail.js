@@ -115,7 +115,7 @@ const makeMoviedetail = async () => {
   overView.innerHTML = overview; // 트레일러 타이틀
 
   // 출연진
-  actor_title.innerHTML = data.media === "movie" ? "출연 배우" : "등장인물";
+  actor_title.innerHTML = data.media === "movie" ? `출연배우 (${actors.length})` : `등장인물 (${actors.length})`;
   let result = "";
   for (let i = 0; i < actors.length; i++) {
     let actorList = `<li onclick="actorDetail(${actors[i].id})">
@@ -146,10 +146,10 @@ makeMoviedetail();
 // 인물페이지로 이동하는 이벤트
 let actorDetail = (id) => {
   sessionStorage.setItem("actorId", id);
-  // window.location.href = "/personDetail.html";
+  window.location.href = "/personDetail.html";
 };
 
-// 인물 리스트 슬라이드 이벤트
+// 인물 리스트 슬라이드 버튼클릭 이벤트
 let actorListUl = document.querySelector(".actor_wrap > .actor_list > ul");
 let actorListLi = actorListUl.children;
 
@@ -175,33 +175,54 @@ function rightBtnEvn() {
   }
 }
 //드레그 슬라이드
+let cout = 0;
+const draggable = (ul, li) => {
+  let isPress = false,
+    prevPosX = 0;
 
-actorListUl.addEventListener("mousedown", (e) => {
-  let dragStart = e.clientX;
+  ul.onmousedown = start;
+  ul.ondragend = end;
+  console.log(li);
+  ul.ondrag = move;
 
-  actorListUl.addEventListener("drag", (e) => {
-    let dragMove = e.clientX;
-    let drag = 0;
-    drag = dragMove;
-    // let dragResult = 0;
-    dragResult = dragMove - dragStart;
-    dragResult;
+  function start(e) {
+    prevPosX = e.clientX;
+    isPress = true;
+    console.log(prevPosX);
+  }
 
-    if (
-      getComputedStyle(actorListUl.firstChild).left < "0px" ||
-      getComputedStyle(actorListUl.lastChild).right > "0px"
-    ) {
-      for (let i = 0; i < actorListLi.length; i++) {
-        actorListUl.children[i].style.left = `${(i * 20)}%`;
+ 
+
+  function end(e) {
+    isPress = false;
+    let = liWidth = getComputedStyle(actorListUl.firstChild).width;
+    let liSlice = liWidth.replace("px", "");
+    let liResult = Number(liSlice);
+
+    const posX = e.clientX - prevPosX;
+
+    if (prevPosX < e.clientX) {
+      num++;
+      if (getComputedStyle(actorListUl.firstChild).left === "0px") {
+        num *= 0;
       }
+      for (let i = 0; i < actorListLi.length; i++) {
+        actorListUl.children[i].style.left = `${(i + num) * 20}%`;
+      }
+      console.log("왼쪽", posX, num);
+      console.log("왼쪽", prevPosX, e.clientX);
     } else {
-      for (let i = 0; i < actorListLi.length; i++) {
-        actorListUl.children[i].style.left = `${dragResult + (i * 20)}%`;
+      num--;
+      if (getComputedStyle(actorListUl.lastChild).right > "0px") {
+        num++;
       }
+      for (let i = 0; i < actorListLi.length; i++) {
+        actorListUl.children[i].style.left = `${(i + num) * 20}%`;
+      }
+      console.log("오른쪽", posX, num);
+      console.log(getComputedStyle(actorListUl.lastChild).right);
     }
-    console.log("드레그시작", dragStart);
-    console.log("드레그끝", dragMove);
-    console.log("드레그fldkdk", dragResult);
-    console.log("드레그", getComputedStyle(actorListUl.firstChild).left);
-  });
-});
+  }
+};
+draggable(actorListUl, actorListLi);
+

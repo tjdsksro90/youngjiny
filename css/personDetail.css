@@ -55,6 +55,31 @@ main {
   justify-content: flex-start;
   align-items: flex-start;
   margin: 3% 0;
+  position: relative;
+}
+.info_wrap > .info_box > ul > li:nth-child(4) >  p:nth-child(3) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 95;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.info_wrap > .info_box > ul > li:nth-child(4) >  p:nth-child(3).active {
+  height: auto;
+  padding: 3%;
+  background-color: #fff;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  overflow:initial;
+  white-space:initial ;
+  text-overflow: initial;
+}
+
+.info_wrap > .info_box > ul > li:nth-child(4) >  p:nth-child(3):hover {
+  color: #f00;
 }
 .info_wrap > .info_box > ul > li > p:nth-child(1) {
   width: 12%;
@@ -102,9 +127,10 @@ main {
 }
 .appearance_list_box > ul {
   width: 100%;
-  height: auto;
+  height: 190rem;
   border: 1px solid #000;
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 .appearance_list_box > ul > li {
   width: 100%;
@@ -124,6 +150,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .appearance_list_box > ul > li > .app_infor_box {
   width: 75%;
@@ -188,4 +215,23 @@ main {
   white-space:initial ;
   text-overflow: initial;
 }
+/* .plus_btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.plus_btn > p{
+  width: auto;
+  font-size: 2rem;
+  padding: 1% 3%;
+  border: 2px solid #000;
+  font-weight: bold;
+  margin: 5%;
+  border-radius: 50px;
+}
 
+.plus_btn > p:hover{
+  background-color: #000;
+  color: #fff;
+} */
