@@ -352,6 +352,11 @@ footer.dark-mode {
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.7rem;
+  height: 270px;
+  display: -webkit-box;
+  word-wrap: break-word;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 }
 
 .people-list ul {
