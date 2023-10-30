@@ -1,7 +1,7 @@
 "use strict";
 import { handleFilter } from "./filter.js";
 import { onDarkmodeBtnClicked } from "./utils.js";
-import { makeCards, makePeopleList } from "./makeMovieCards.js";
+import { makeCards, makePeopleList } from "./makeCards.js";
 
 const darkmodeBtn = document.querySelector(".button-darkmode");
 
