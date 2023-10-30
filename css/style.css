@@ -295,6 +295,7 @@ footer.dark-mode {
   justify-self: center;
   cursor: pointer;
 }
+
 /* counter */
 .card-list-main .movie-card::before {
   counter-increment: rank;
