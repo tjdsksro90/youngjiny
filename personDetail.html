@@ -6,11 +6,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="./css/style.css" /> -->
+    <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
     <link rel="stylesheet" href="./css/personDetail.css   " />
     <link rel="stylesheet" href="./css/review.css" />
-
     <link rel="shortcut icon" href="./src/sparta.ico" />
     <title>SpartaFlix</title>
   </head>
@@ -24,38 +23,115 @@
       </div>
     </modal>
 
-    <header></header>
+    <header class="header">
+      <div class="nav-container">
+        <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="">영화</a></li>
+            <li><a href="">드라마</a></li>
+            <li><a href="">현재 상영중</a></li>
+            <li><a href="">마이 페이지</a></li>
+          </ul>
+        </nav>
+        <div class="container">
+          <button class="button button-darkmode" href="#">
+            <img class="icon-darkmode" src="./src/darkmode.svg" alt="darkmode" width="32px" />
+          </button>
+          <form id="nav-search">
+            <label>영화 검색 </label>
+            <input id="search-input" name="title" type="text" autofocus />
+            <button class="button button-search" type="submit">
+              <img src="./src/search.svg" alt="search" width="32px" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
 
     <main>
-       
-    </main>
-
-
-
-    <section class="comment-section">
-      <div class="comment-my">
-          <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
+      <div class="person_info_wrap">
+          <div class="title_wrap">
+              <p></p>
+          </div>
+          <div class="info_wrap">
+              <div class="img_box">
+                  <img class="image" src="" alt="">
+              </div>
+              <div class="info_box">
+                  <ul>
+                      <li>
+                          <p class="list_title1">출생년도</p>
+                          <p>:</p>
+                          <p class="birthday"></p>
+                      </li>
+                      <li>
+                          <p class="list_title2">출생지역</p>
+                          <p>:</p>
+                          <p class="place_of_birth"></p>
+                      </li>
+                      <li>
+                          <p class="list_title3">성별</p>
+                          <p>:</p>
+                          <p class="gender"></p>
+                      </li>
+                      <li>
+                          <p class="list_title4">인물소개</p>
+                          <p>:</p>
+                          <p class="biography"></p>
+                      </li>
+                      <li>
+                          <p class="list_title5">사이트</p>
+                          <p>:</p>
+                          <p class="homepage"></p>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="appearance_wrap">
+            <div class="appearance_title_box">
+              <div class="movie_title active">필모그래피</div>
+              <div class="tv_title">방송출연</div>
+            </div>
+            <div class="appearance_list_box">
+              <ul>
+                
+              </ul>
+            </div>
+          </div>
       </div>
-      <form id="comment-form" class="comment-form">
-          <div class="form-wrap comment-basic">
-              <label for="name">유저 이름</label>
-              <input type="text" id="name" maxlength="20" required />
-          </div>
-          <div class="form-wrap comment-basic">
-              <label for="password">비밀번호</label>
-              <input type="password" id="password" maxlength="8" required></textarea>
-          </div>
-          <div class="form-wrap comment-wrap">
-              <label for="comment" class="displayNone_IM">코멘트</label>
-              <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
-          </div>
-          <button type="submit" class="comment-submit">제출</button>
-      </form>
-      <ul id="comment-list" class="comment-list"></ul>
-    </section>
+  </main>
+
+
+  <section class="comment-section">
+    <div class="comment-my">
+        <h3>Reviews&nbsp;<span id="comment-count" class="comment-count">0</span></h3>
+    </div>
+    <form id="comment-form" class="comment-form">
+        <div class="form-wrap comment-basic">
+            <label for="name">유저 이름</label>
+            <input type="text" id="name" maxlength="20" required />
+        </div>
+        <div class="form-wrap comment-basic">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" maxlength="8" required></textarea>
+        </div>
+        <div class="form-wrap comment-wrap">
+            <label for="comment" class="displayNone_IM">코멘트</label>
+            <textarea id="comment" class="comment" placeholder="리뷰 작성글을 남겨주세요" required></textarea>
+        </div>
+        <button type="submit" class="comment-submit">제출</button>
+    </form>
+    <ul id="comment-list" class="comment-list"></ul>
+  </section>
+
+
+
+
 
     <script src="js/modal.js"></script>
     <script src="js/personDetail.js"></script>
     <script src="js/review.js"></script>
+    <script src="js/search.js"></script>
   </body>
 </html>
