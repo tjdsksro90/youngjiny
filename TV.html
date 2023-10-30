@@ -8,45 +8,11 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modal.css" />
     <link rel="shortcut icon" href="./src/sparta.ico" />
-    <link rel="stylesheet" href="TV.css" />
+    <link rel="stylesheet" href="./css/TV.css" />
   </head>
 
   <body id="root-container">
-    <div class="main-wrapper">
-      <!-- 모달기능 -->
-      <modal>
-        <div class="modal_bg"></div>
-        <div class="modal_box">
-          <p class="modal_text"></p>
-          <button class="modal_btn">닫기</button>
-        </div>
-      </modal>
-
-      <header class="header">
-        <div class="nav-container">
-          <a class="logo" href="."><img src="./src/spartaflix.svg" alt="내일배움캠프" width="160px" /></a>
-          <nav class="nav">
-            <ul>
-              <li><a href="">영화</a></li>
-              <li><a href="./TV.html">드라마</a></li>
-              <li><a href="./nowplay.html">현재 상영중</a></li>
-              <li><a href="">마이 페이지</a></li>
-            </ul>
-          </nav>
-          <div class="container">
-            <button class="button button-darkmode" href="#">
-              <img class="icon-darkmode" src="./src/darkmode.svg" alt="darkmode" width="32px" />
-            </button>
-            <form id="nav-search">
-              <label>영화 검색 </label>
-              <input id="search-input" name="title" type="text" autofocus />
-              <button class="button button-search" type="submit">
-                <img src="./src/search.svg" alt="search" width="32px" />
-              </button>
-            </form>
-          </div>
-        </div>
-      </header>
+    <figure>TV 시리즈</figure>
 
     <form class="search" onsubmit="handleSearch(event)">
       <label>영화 검색 : </label>
@@ -59,17 +25,13 @@
       <div id="topRate-container"></div>
     </div>
 
-    
-
     <h1>현재 방영작</h1>
     <div id="section-container">
       <div id="onAir-container"></div>
     </div>
-    
-    <script src="topRate.js" type="module"></script>
-    <script src="onTheAir.js" type="module"></script>
-    <script src="./js/search.js" type="module"></script>
-  
-  </body>
 
+    <script src="./js/onTheAir.js"></script>
+    <script src="./js/topRate.js"></script>
+    <script src="./js/search.js" type="module"></script>
+  </body>
 </html>

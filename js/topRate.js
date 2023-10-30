@@ -1,21 +1,20 @@
-const submitBtn = document.getElementById("search-btn");
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYmEyYzIzMWRjMTQxMGEzNjk3ZWEzOWQyMjY2M2IwZiIsInN1YiI6IjY1MzBlZmMzNTFhNjRlMDBjOGZkY2I5OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jYFT5VOAZYR9SPBGGB16_GUZgiU7Bmkvz6G-5Qwiw48"
-  }
-};
-
+//const submitBtn = document.getElementById("search-btn");
+// const options = {
+//   method: "GET",
+//   headers: {
+//     accept: "application/json",
+//     Authorization:
+//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYmEyYzIzMWRjMTQxMGEzNjk3ZWEzOWQyMjY2M2IwZiIsInN1YiI6IjY1MzBlZmMzNTFhNjRlMDBjOGZkY2I5OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jYFT5VOAZYR9SPBGGB16_GUZgiU7Bmkvz6G-5Qwiw48",
+//   },
+// };
 fetch("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1", options)
   .then((response) => response.json())
-  .then((response) => createTopRateCard(response))
+  .then((response) => {
+    createTopRateCard(response);
+    console.log("fetch TopRate");
+  })
   .catch((err) => console.error(err));
-
 const topRateContainer = document.getElementById("topRate-container");
-
 const createTopRateCard = (topRates) => {
   topRates.results
     .filter((topRate, i) => {
@@ -23,41 +22,32 @@ const createTopRateCard = (topRates) => {
     })
     .forEach((topRate) => {
       const { id, name, overview, poster_path, vote_average } = topRate;
-
       const card = document.createElement("div");
       const image = document.createElement("img");
       const nameElement = document.createElement("div");
       const overviewElement = document.createElement("div");
       const voteAverageElement = document.createElement("div");
-
       card.classList.add("topRate-card");
       image.classList.add("poster-image");
       nameElement.classList.add("name");
       overviewElement.classList.add("overview");
       voteAverageElement.classList.add("vote-average");
-
       image.setAttribute("src", `https://image.tmdb.org/t/p/w500/${poster_path}`);
-
       nameElement.textContent = name;
       overviewElement.textContent = overview;
       voteAverageElement.textContent = `Vote Average: ${vote_average}`;
-
       card.setAttribute("id", id);
-
       card.addEventListener("click", (e) => {
         const id = e.currentTarget.getAttribute("id");
         alert("TV Programme id: " + id);
       });
-
       card.appendChild(image);
       card.appendChild(nameElement);
       card.appendChild(overviewElement);
       card.appendChild(voteAverageElement);
-
       topRateContainer.appendChild(card);
     });
 };
-
 const onSearchClick = (e) => {
   e.preventDefault();
   const input = document.getElementById("search-input");
@@ -66,7 +56,6 @@ const onSearchClick = (e) => {
   filterTopRate(value);
 };
 submitBtn.addEventListener("click", onSearchClick);
-
 const filterTopRate = function (value) {
   let deleteCard = [];
   let showCard = [];
@@ -86,7 +75,6 @@ const filterTopRate = function (value) {
     card.closest(".topRate-card").style.display = "none";
   });
 };
-
 const renderTopRate = (topRates) => {
   topRates.forEach((topRate) => {
     const topRateCard = createMovieCard(topRate);
